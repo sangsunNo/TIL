@@ -9,18 +9,21 @@
     - [비교와 bollean](#비교와-bollean)
     - [배열](#배열)
 - 221217
-    - []()
+    - [for-each](#for-each)
+    - [public static void main (String[ ] args)](#public-static-void-main-string-args)
+    - [public static void main (String[ ] args)](#public-static-void-main-string--args)
+    - [프로그램이 실행되는 동안 파라미터 입력받기](#프로그램이-실행되는-동안-파라미터-입력받기)
 
 ### 상수형 데이터 타입
 
 - JAVA 에서 정수는 int 실수는 double 를 기본으로 채택
 
     ```JAVA
-        float a = 2.2; // err
-        float a = 2.2F; // flaot 타입을 명시 해야한다
-        double a = 2.2; // 또는 double 사용
+        float a = 2.2;      // err
+        float a = 2.2F;     // flaot 타입을 명시 해야한다
+        double a = 2.2;     // 또는 double 사용
 
-        long b = 214783648 // 정수 범위를 넘어가는 수를 정수로 표현하였기 때문에 에러 발생
+        long b = 214783648  // 정수 범위를 넘어가는 수를 정수로 표현하였기 때문에 에러 발생
         long b = 214783648L // long 타입을 명시해줌으로 에러 해결
     ```
 
@@ -30,11 +33,11 @@
     - 값의 유실이 될 수 있는 경우 형 변환 불가
 
     ```JAVA
-        double a = 2.2F; // double 형이 float 형 보다 더 큰 수를 표현하여 자동 형 변환
-        float a = 2.2; /* float 형이 double 형 보다 표현 가능한 수가 적어 
-                        변환시 데이터 유실이 있을 수 있기 때문에 자동 형 변환 불가 */
-        int a = 3.4; /* 실수 3.4 가 정수 3으로 변환 시 
-                        데이터 유실 되기 때문에 자동 형 변환 불가 */
+        double a = 2.2F;    // double 형이 float 형 보다 더 큰 수를 표현하여 자동 형 변환
+        float a = 2.2;      /* float 형이 double 형 보다 표현 가능한 수가 적어 
+                                변환시 데이터 유실이 있을 수 있기 때문에 자동 형 변환 불가 */
+        int a = 3.4;        /* 실수 3.4 가 정수 3으로 변환 시 
+                                데이터 유실 되기 때문에 자동 형 변환 불가 */
     ```
 
 ### 명시적 형변환
@@ -42,10 +45,10 @@
 - 데이터 타입을 명시 함으로 써 유실되는 데이터가 있더라도 명시한 데이터 타입으로 강제 변환을 해준다.
 
 ```JAVA
-    int a = 2.2 /* 변수의 데이터 int 가 double 보다  표현 가능한 데이터가 적어
-    자동 형 변환이 되지 않는다. */
-    int a = (int)2.2; /* int 타입을 명시 함으로 써 0.2 데이터를 잃은 채 int 2 라는 데이터로
-    강제 변환하여 저장 */
+    int a = 2.2;        /* 변수의 데이터 int 가 double 보다  표현 가능한 데이터가 적어
+                            자동 형 변환이 되지 않는다. */
+    int a = (int)2.2;   /* int 타입을 명시 함으로 써 0.2 데이터를 잃은 채 int 2 라는 
+                            데이터로 강제 변환하여 저장 */
 ```
 
 ### 연산자 우선순위
@@ -102,3 +105,48 @@
     System.out.println(stringArray.length); // 4
 ```
 
+### for-each
+
+- 반복문을 통해 배열을 탐색 할 때에 더 간편하게 사용 할 수 있는 문법
+
+``` JAVA
+    String[] members = { "a", "b", "c" };
+        for (String e : members) {
+            System.out.println(e);
+        }
+
+    // a
+    // b
+    // c
+```
+
+### public static void main (String[ ] args)
+
+- 함수명 **main** 은 약속된 이름의 함수로 JAVA를 실행하였을 때 시작점으로 main 을 찾아서 실행한다
+<br/>
+- **void** : return 값을 갖지 않는다
+- **main( )** : 함수 이름은 main
+- **String[ ] args** : main 함수의 파라미터로 변수명이 args 라는 문자열 배열을 입력 받는다
+
+```JAVA
+    public static void main(String[] args){
+        System.out.println(args.length);    // 입력받은 파라미터( args ) 개수를 출력
+    }
+```
+
+### 프로그램이 실행되는 동안 파라미터 입력받기
+
+- Scanner 를 통해 실행 중인 프로그램이 키보드를 통해 파라미터가 입력 될 때까지 대기
+
+```JAVA
+    import java.util.Scanner;
+
+    public class MyApp {
+        public static void main(String[] args){
+            Scanner sc = new Scanner(System.in);   // 입력 받을 Scanner 객체 생성
+            int i = sc.nextInt();                  // 키보드로 값을 입력 할 때 까지 대기
+            System.out.println("input: " + i);
+            sc.close();
+        }
+}
+```

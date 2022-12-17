@@ -10,7 +10,7 @@
     - [배열](#배열)
 - 221217
     - [for-each](#for-each)
-    - [public static void main (String[ ] args)](#public-static-void-main-string-args)
+ain (String[ ] args)](#public-static-void-main-string-args)
     - [public static void main (String[ ] args)](#public-static-void-main-string--args)
     - [프로그램이 실행되는 동안 파라미터 입력받기](#프로그램이-실행되는-동안-파라미터-입력받기)
 
@@ -124,6 +124,7 @@
 
 - 함수명 **main** 은 약속된 이름의 함수로 JAVA를 실행하였을 때 시작점으로 main 을 찾아서 실행한다
 <br/>
+
 - **void** : return 값을 갖지 않는다
 - **main( )** : 함수 이름은 main
 - **String[ ] args** : main 함수의 파라미터로 변수명이 args 라는 문자열 배열을 입력 받는다

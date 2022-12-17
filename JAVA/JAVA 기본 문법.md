@@ -1,6 +1,6 @@
 ## DATE: 221216 ~ 17
 ---
-## index
+## Index
 - 221216
     - [상수형 데이터 타입](#상수형-데이터-타입)
     - [형변환](#형변환)
@@ -10,9 +10,9 @@
     - [배열](#배열)
 - 221217
     - [for-each](#for-each)
-ain (String[ ] args)](#public-static-void-main-string-args)
     - [public static void main (String[ ] args)](#public-static-void-main-string--args)
     - [프로그램이 실행되는 동안 파라미터 입력받기](#프로그램이-실행되는-동안-파라미터-입력받기)
+    ---
 
 ### 상수형 데이터 타입
 

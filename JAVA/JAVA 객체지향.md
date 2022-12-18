@@ -175,7 +175,7 @@ JAVA 에서는 함수 파라미터의 변수명과 클래스 변수명의 같은
 - 하지만 클래스 멤버 생성 당시에는 인스턴스가 생성이 되지 않은 상태임으로 오직 static field 에만 접근이 가능한 상태이다  
 - 심지어 클래스 메소드는 static feild 만 접근 가능하도록 **정의 되었기 때문에** 인스턴스가 생성된 이후라도 non static feild 에는 접근이 불가능 하다
 
-A = static field ( 클래스 멤버 )
+A = static field ( 클래스 멤버 )  
 B = non static field ( 인스턴스 멤버 )
 
 <img src="../PIC/부분집합.png">

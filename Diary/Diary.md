@@ -1,9 +1,13 @@
+#### 221220
+- [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
+    - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (85) Java - 상속 (2/3) : 코드로 알아보는 상속 ~ 
+
 #### 221219
-- [JAVA 객체지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
+- [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (79) Java - 유효범위(1/4) : 유효범위란? ~ (84) Java - 상속 (1/3) : 상속의개념
 
 #### 221218
-- [JAVA 객체지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
+- [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (66) Java - 시즌1을 마무리하며... ~ (78) Java - 클래스 맴버, 인스턴스 맴버 (4/4) : 타입별 비교
     
 #### 221217

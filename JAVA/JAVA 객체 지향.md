@@ -21,6 +21,9 @@
 - 221225
     - [상속](#상속)
     - [생성자](#생성자)
+    - [super](#super)
+- 221226
+    - [override](#override)
 ---
 
 - 객체 지향 프로그래밍 ( OOP: Object Oriented Programming )
@@ -88,6 +91,7 @@
 
 ## this
 
+- 자기 자신의 클래스를 의미
 - 클래스 내부의 함수에서 선언한 지역변수와 클래스 변수와 변수명이 동일 할 때에 this 를 통해서 지역변수가 아닌 전역변수인 클래스 변수를 사용한다고 명시해 주는 역할
 ---
 
@@ -255,16 +259,45 @@ B = non static field ( 인스턴스 멤버 )
 
 ```JAVA
     public class TestClass {
-        public TestClass() {}               // 파라미터를 받지 않는다는
         public TestClass(int param1) {}
             public static void main(String[] args) {
-                TestClass  test = new TestClass();
+                TestClass  test = new TestClass();      // int형 파라미터를 넘기지 않기 때문에 에러 발생
             }
 }
 ```
+
+```JAVA
+    public class TestClass {
+        public TestClass() {}               // 파라미터를 받지않는 경우 추가 ( 에러 발생 X )
+        public TestClass(int param1) {}
+            public static void main(String[] args) {
+                TestClass  test = new TestClass();      // 파라미터를 받지않는 생성자가 있기 때문에 에러 발생 X
+                TestClass  test2 = new TestClass(2);    // int 형 변수를 넘겨받는 생성자가 있기 때문에 에러 발생 X
+            }
+}
+```
+
+- 하위 클래스가 인스턴스화 될 때에 하위 클래스의 생성자가 동작하기 이전에 부모 클래스의 생성자를 먼저 호출 후 부모 클래스를 먼저 정의하도록 정의되어 있다
+    - 상위 클래스에서 사용자 정의 생성자가 있는 경우 하위 클래스에서 파라미터 없는 인스턴스를 생성시 오류 발생
+    - 하위 클래스 생성자 호출 이전에 상위 클래스에서 생성자가 선 호출되어야 하는데 파라미터 값이 넘어오지 않았기 때문
+        - 위의 예시와 같이 파라미터를 받지 않는 경우를 추가해 주면 해결
+        - 또는 [super](#super) 와 같이 하위 생성자에서 상위 생성자를 상속 받을 수 있다
 
 ## super
 
 - 하위 클래스와 상위 클래스의 생성자의 하는 역할이 같다면 super을 통해 부모 생성자의 생성자를 상속 받아올 수 있다.
 - super = 부모 클래스를 의미 소괄호 ( ) 를 붙이면 부모클래스의 생성자를 의미하게 된다
 - super 을 사용할 때에는 super 는 최상단에 위치해야 한다는 것이다 **[하위 클래스가 인스턴스화 될 때에 하위 클래스의 생성자가 동작하기 이전에 부모 클래스의 생성자를 먼저 호출 후 부모 클래스를 먼저 정의하도록 정의되어 있다](#생성자)**
+- this 가 자기 자신 클래스를 의미하는 것과 같이 super 은 부모 클래스를 의미
+
+```JAVA
+    class ChildTest extends ParentTest {
+        public ChildTest(int left, int right) {
+            super(left, right);                     // 상위, 하위 클래스 생성자 역할 이 같은 경우 상위 클래스에서 상송
+            this.child_blabla = left + right;       // 하위 클래스에서 추가로 덧붙일 내용은 super 하단에 작성
+        }
+    }
+```
+## override
+
+- 

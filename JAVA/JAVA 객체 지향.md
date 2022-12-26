@@ -1,4 +1,4 @@
-## DATE: 221218 ~ 221225
+## DATE: 221218 ~ 221226
 ---
 
 ## Index
@@ -24,6 +24,8 @@
     - [super](#super)
 - 221226
     - [override](#override)
+    - [overloading](#overloading)
+    - [컴파일과 클래스](#컴파일과-클래스)
 ---
 
 - 객체 지향 프로그래밍 ( OOP: Object Oriented Programming )
@@ -300,4 +302,53 @@ B = non static field ( 인스턴스 멤버 )
 ```
 ## override
 
-- 
+- 기존의 상속에서는 부모의 기능에 자식의 기능을 추가하여 사용을 하였지만 override 는 부모에게 받아온 기능을 수정해서 사용하는 것
+- over ride = 덮어 쓰기
+- **우선 순위**
+    - 부모 클래스와 자식 클래스에 동일한 이름의 함수명이 존재할 경우 자식 클래스에 있는 함수를 우선으로 생각하여 실행하게 된다
+- **사용법**
+    - 부모, 자식의 함수명이 동일 해야한다
+    - return 데이터 타입이 동일 해야한다
+    - 매개변수 데이터 타입, 개수, 순서가 동일 해야한다
+- **수정해서 사용**
+    - [super](#super) 을 통해 부모 클래스의 함수를 사용하고 반환된 값을 통해 추가 작업
+```JAVAwe
+    public int test(){
+        int val = super.avg();
+        // 추가 작업
+    }
+```
+
+## overloadin
+- 같은 이름의 함수이지만 다른 매개 변수를 가지고 있는 함수를 정의 할 때 사용
+    - 계산기의 경우 정수 값 2개를 넣는 sum( int left, int right ) 실수 값 3개를 넣는 경우 sum( double one, double two, double three )
+- over loading = 새로운 것을 로드해 준다
+- **사용법**
+    - 함수 이름을 같게 선언하며 받아오는 매개변수를 다르게 해주면 된다
+    - 매개 변수가 다르다는 조건에서 리턴 값을 다르게 할 수 있다
+    ```JAVA
+        public class MyApp {
+            void A (){
+                System.out.println("void A()");
+            }
+            int A (int arg1){
+                System.out.println("int A (int arg1)");
+                return 1;
+            }
+            void A (String arg1){
+                System.out.println("void A (String arg1)");
+            }
+
+            public static void main(String[] args) {
+                MyApp od = new MyApp();
+
+                od.A();             // 매개변수 없음 리턴 없음
+
+                int a = od.A(1);    // int 형 매개변수 리턴 있음
+                System.out.println("return int A() : " + a);
+                
+                od.A("coding everybody");   // 문자 형 매개변수 리턴 없음
+            }
+        }
+    ```
+## 컴파일과 클래스

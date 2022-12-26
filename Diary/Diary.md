@@ -1,9 +1,9 @@
 #### 221226
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
-    - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (88) Java - 상속과 생성자 (2/2) : super ~ ()
+    - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (89) Java - overriding (1/2) ~ (93) Java - 클래스패스 (1/3) : 컴파일과 클래스
 #### 221225
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
-    - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (85) Java - 상속 (2/3) : 코드로 알아보는 상속 ~ (88) Java - 상속과 생성자 (2/2) : super
+    - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (85) Java - 상속 (2/3) : 코드로 알아보는 상속 ~ (88) Java - 상속과 생성자 (2/2) : super 
 
 #### 221219
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)

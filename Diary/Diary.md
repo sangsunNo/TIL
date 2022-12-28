@@ -1,7 +1,7 @@
 #### 221227
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)
-    (93) Java - 클래스패스 (1/3) : 컴파일과 클래스 ~
+    (93) Java - 클래스패스 (1/3) : 컴파일과 클래스 ~ (97) Java - 패키지 (2/4) : 패키지사용
 #### 221226
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck) (89) Java - overriding (1/2) ~ (93) Java - 클래스패스 (1/3) : 컴파일과 클래스

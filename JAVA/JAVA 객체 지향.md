@@ -28,6 +28,10 @@
     - [컴파일과 클래스](#컴파일과-클래스)
 - 221227
     - [컴파일과 클래스](#컴파일과-클래스)
+    - [classpath](#classpath)
+    - [환경변수](#환경변수)
+    - [패키지](#패키지)
+    
 ---
 
 - 객체 지향 프로그래밍 ( OOP: Object Oriented Programming )
@@ -354,3 +358,42 @@ B = non static field ( 인스턴스 멤버 )
         }
     ```
 ## 컴파일과 클래스
+
+- JAVA 파일을 컴파일 했을 때에 class 파일이 생성되는데 이 때에 소스코드 내부의 클래스가 각자 생성 된다.
+- JAVA 파일을 컴퓨터가 인식할 수 있게 하는 과정이 컴파일이고 그 결과물이 class 파일이다.
+```JAVA
+    javac JAVA_파일명.java
+```
+
+### classpath
+
+- 소스 코드에서 호출하는 클래스가 같은 파일 내부에 있지 않은 경우
+    - .class 파일이 같은 폴더이면 Error X
+    - .class 파일이 다른 폴더이면 Error O
+        - java -classpath ""호출할 클래스의 파일 위치"" "실행할 파일명"
+        ```JAVA
+            java -classpath "." TestFile    // . = 현재 폴더
+            java -classpath ".;lib" TestFile    // 세미 콜론으로 여러 폴더 추가 가능
+        ```
+
+## 환경변수
+
+- 운영제체에서 세팅하는 변수로 운영체제 내애서 어디에 있건 사용가능 한 글로벌 한 변수.
+- 환경변수 세팅을 해 놓으면 -classpath를 해주지 않아도 된다.
+
+## 패키지
+
+- 여러 클래스가 존재 할 때에 중복된 이름에 의해 충돌이 있을 수 있는데 이를 해결하기 위해 나온 방안.
+    - 마치 파일명이 같지만 다른 폴더에 있는 경우, 지역변수 & 전역변수 
+- 패키지 자체를 가져온다.
+    - package 패키지 위치
+- 특정 클래스만 가져오기
+    - import 패키지 위치.클래스명
+- 내부의 모든 클래스 가져오기
+    - import 패키지 위치.사용 할 클래스
+
+```JAVA
+    package test1.test2.test3
+    import test1.test2.test3.myclass
+    import test1.test2.test3.*
+```

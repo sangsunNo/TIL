@@ -1,4 +1,4 @@
-## DATE: 221218 ~ 221226
+## DATE: 221218 ~ 221229
 ---
 
 ## Index
@@ -32,7 +32,9 @@
     - [환경변수](#환경변수)
     - [패키지](#패키지)
 - 221229
-    - 
+    - [패키지](#패키지)
+    - [API](#API)
+    - [접근 제어자](#접근-제어자)
 ---
 
 - 객체 지향 프로그래밍 ( OOP: Object Oriented Programming )
@@ -395,6 +397,44 @@ B = non static field ( 인스턴스 멤버 )
 
 ```JAVA
     package test1.test2.test3
-    import test1.test2.test3.myclass
+    import test1.test2.test3.myclass  
     import test1.test2.test3.*
 ```
+## API
+
+- Application Programming Interface = 어플리케이션에서 프로그래밍을 하는데 제공하는 인터페이스로 System.out.println() 을 예시로 아무것도 import 하지 않았지만 화면에 출력하는 함수를 사용 할 수 있다.
+
+## 접근 제어자
+
+- 언어를 사용하는데 있어 자유롭게 표현이 가능하지만 이로 인하여 생기는 문제들을 막기 위해 생긴 규제로 자유에 질서를 부여함으로 더욱 원할 한 프로그래밍을 목적으로 함.
+
+- 프로그램이 커진다는 것은 Error 확률도 높아진다는 의미와 같다. 특히 로직이 망가지는 이유중 대부분은 사용자에게 있다. 즉 인스턴스 객체를 사용하는 입장에서 내부적으로 사용하는 클래스 변수나 메소드에 접근을 하여 개발자가 의도하지 않은 오작동을 일으킴으로 접근 권한을 나누어야 한다.
+    - 은행 내부에 접근 가능한 은행 직원과 ( private ) 은행 내부에는 접근을 못하지만 은행 내부에 접근이 가능한 직원과 창구에서 거래를 하는 사용자 ( public )
+
+```JAVA
+    class Test{
+        private func();
+
+        public ins_func();
+
+        public control_func(){
+            func();
+        }
+    }
+    Test ins_test = new Test();
+```
+- private
+    - 클래스에 외부에서는 접근이 불가능, 클래스를 통해 직접 접근 또는 public 함수를 통해 간접적으로 접근을 해야한다.
+    
+    ```JAVA
+        Test.func();            // 가능
+        ins_test.func()         // 불가능
+        int_test.control_func() // 가능
+    ```
+
+- public
+    - 인스턴스 객체를 통해 접근이 가능한 함수
+    
+    ```JAVA
+        ins_test.func()         // 가능
+    ```

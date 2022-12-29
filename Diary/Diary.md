@@ -1,7 +1,7 @@
 #### 221229
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)
-    (98) Java - 패키지 (3/4) : 손컴파일 ~ 
+    (98) Java - 패키지 (3/4) : 손컴파일 ~ (105) Java - 접근제어자 3 : 사용이유
 #### 221227
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)

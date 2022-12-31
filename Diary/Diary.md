@@ -1,3 +1,8 @@
+#### 221231
+- [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
+    - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)
+    (109) Java - abstract (2/3) : 사용이유 ~ 
+
 #### 221230
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)

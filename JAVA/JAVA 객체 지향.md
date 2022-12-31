@@ -36,7 +36,9 @@
     - [API](#API)
     - [접근 제어자](#접근-제어자)
 - 221230
-    - [접근 제어자](#접근-제어자)
+    - [접근 제어자](#접근-제어자)\
+    - [클래스 접근제어자](#클래스-접근제어자)
+    - [abstract](#abstract)
 ---
 
 - 객체 지향 프로그래밍 ( OOP: Object Oriented Programming )
@@ -433,10 +435,49 @@ B = non static field ( 인스턴스 멤버 )
         ins_test.func()         // 불가능
         int_test.control_func() // 가능
     ```
-
+xxxx
 - public
     - 인스턴스 객체를 통해 접근이 가능한 함수
     
     ```JAVA
         ins_test.func()         // 가능
+    ```
+
+||같은 클래스|같은 패키지|다른 패키지 상속 ( O )|다른 패키지 상속 ( X )|
+|:--:|:--:|:--:|:--:|:--:|
+|public|O|O|O|O|
+|protected|O|O|O|X|
+|defalut|O|O|X|X|
+|private|a|O|X|X|X|
+
+ ## 클래스 접근제어자
+
+### public
+- 다른 패키지에서 사용가능
+- public 클래스를 생성하려면 소스 코드 파일명이 클래스 이름과 같아야 한다.
+    - 즉, 소스 코드에는 한 개의 퍼블릭 클래스만 생성 가능하다.
+
+### default 
+
+- 다른 패키지에서 사용 불가능
+
+## abstract
+
+- abstract 로 지정되어 있는 메소드나 클래스는 직접적으로 사용이 불가능 하고 반드시 상속하는 클래스를 만들어서 상속 받은 클래스를 사용하도록 강제한다.
+
+- 추상 메서드
+    - 추상 메서드는 구체적인 로직을 가지고 있지 않고 그 시그니쳐만 가지고 있다.
+        - 즉 사용하는 곳에서 구체적인 로직을 override 해줘야 한다.
+        - 안해주면 Error 발생.
+    
+    ```JAVA
+        abstract class Parent{
+            public abstract int ab_test();  // 구체적인 로직이 없고 선언만 한다.
+        }
+
+        class Child extends Parent{
+            public int b(){                 // override 를 통해 구체적인 로직 선언
+                return 1;
+            }
+        }
     ```

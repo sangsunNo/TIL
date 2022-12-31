@@ -1,7 +1,7 @@
 #### 221230
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)
-    (106) JAVA - 접근제어자 4 : 세밀한제어 ~
+    (106) JAVA - 접근제어자 4 : 세밀한제어 ~ (108) Java - abstract (1/3) : 문법
 
 #### 221229
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)

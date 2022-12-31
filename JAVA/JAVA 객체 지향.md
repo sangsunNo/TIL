@@ -1,4 +1,4 @@
-## DATE: 221218 ~ 221230
+## DATE: 221218 ~ 230101
 ## Index
 ---
 
@@ -42,7 +42,10 @@
     - [abstract](#abstract)
     - [다지인 패턴](#다지인-패턴)
     - [interface](#interface)
+- 230101
+    -[다형성](#다형성)
 ---
+
 
 - 객체 지향 프로그래밍 ( OOP: Object Oriented Programming )
 - **JAVA는** 다른 언어와 다르게 **객체 지향을 사실상 강제한다** ( 라고한다. 공부하다보면 알게 될지도 )
@@ -589,3 +592,4 @@ xxxx
         class Test implements Test2, Test3{}
     ```
 
+## 다형성

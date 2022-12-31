@@ -2,7 +2,6 @@
 ## Index
 ---
 
-
 - 221218
     - [추상화](#추상화--abstract)
     - [부품화](#부품화)
@@ -41,6 +40,8 @@
     - [abstract](#abstract)
 - 221231
     - [abstract](#abstract)
+    - [다지인 패턴](#다지인-패턴)
+    - [interface](#interface)
 ---
 
 - 객체 지향 프로그래밍 ( OOP: Object Oriented Programming )
@@ -244,6 +245,7 @@ B = non static field ( 인스턴스 멤버 )
 
 - 어떠한 객체가 기존에 이미 존재하는 객체의 변수 함수를 물려 받아와 추가로 본인의 변수 함수를 추가하거나 상속받아 온 것을 본인에 맞게 변경해서 사용하는 것
 - 기존의 객체를 그대로 유지하면서 어떠한 기능을 문제 없이 추가 할 수 없을까 하는 고민에서 나온 방법
+- 한 명의 자식 클래스는 오직 한 명의 부모 클래스만 가질 수 있다.
 - **상속의 효용성**
     - 기존의 사용하던 함수를 내 입맞에 맞게 수정을 하려 하는데 같은 프로그램 내의 사용중인 다른 곳에서 까지의 영향을 미치게 되는 것을 막아준다
 - 부모 클래스와 자식클래스의 관계를 상위 ( super ) 클래스 하위 ( sub ) 클래스로 표현
@@ -482,7 +484,7 @@ xxxx
 ### 추상 메서드
 
 - 추상 메서드는 구체적인 로직을 가지고 있지 않고 그 시그니쳐만 가지고 있다. 즉, 시그니쳐에 의한 구체적인 구현의 책임은 사용하는 쪽에 넘긴다.
-    - 사용하는 곳에서 구체적인 로직을 override 해줘야 한다.
+    - 사용하는 곳에서 구체적인 로직을 [override](#override) 해줘야 한다.
     - 안해주면 Error 발생.
     - 메서드르 선언만 해야하지 안에 내용이 존재하면 Error.
     - 메서드가 abstract 일 경우 클래스는 자동으로 abstract 가 된다.
@@ -498,3 +500,92 @@ xxxx
             }
         }
     ```
+
+## 다지인 패턴
+
+- 프로그래밍을 어떻게 만들 것인지에 대한 **디자인**과 반복적인 것을 의미하는 **패턴** 을 의미한다.
+- 프로그래밍이 창의적인 활동이긴 하지만 비슷한 카테고리의 객체라면 내부의 로직의 전개 방법과 구성에서 일정한 패턴이 존재 하는데 이에 대해 정리를 해둔 것.
+
+## final
+
+- [abstract](#abstract) ( 상속 ) 과 대칭점에 있는 관계로 상속/변경을 금지하는 규제이다.
+- 수학을 다루는 클래스에서 PI 는 3.14 인 상수로 변경이 되어서는 안되는 숫자인데 이 때 final 을 통해서 클래스와 메서드의 접근을 통해서 변경이 되는 것을 막을 수 있댜.
+- final 로 생성된 함수는 자식 클래스에서 상속을 할 수가 없다.
+- 클래스 내부에서 final 로 생성된 함수는 자식 클래스가 상속을 통해 받아온 후 [override](#override) 를 통해서도 변경이 불가능하다.
+
+## interface
+
+- 어떤 클래스가 있고 그 클래스가 특정 interface 를 사용한다면 그 객체는 반드시 interface 의 메소드를 구현해야 한다. 만약 interface 가 강제하고 있는 메소드를 구현하지 않으면 이 소스코드는 컴파일 조차 되지 않는다.
+- 특정 클래스와 interface 를 결합 할 때에 interface 내 메서드의 구현을 강제한다.
+- 하나의 클래스는 복수 개의 interface 를 구현 할 수 있다. JAVA 의 자식이 오직 한 명의 부모만 상속 받는 것과의 차이점.
+- interface 의 멤버는 public 이다.
+    - interface 는 외부에서 interface 의 로직을 구현한다 그렇기 때문에 가장 개방적인 접근 제어자인 public 만을 허용한다.
+    - 접근 제어자를 생략 할 경우 default 가 아닌 public 으로 생성된다. 왜냐하면 interface 의 멤버는 무조건 public 이기 때문에.
+<br>
+
+- **사용 이유**
+    1. 개발 과정에서 클래스 자체를 개발하는 파트와 그 클래스를 가져다 사용하는 파트가 있다면 후자의 경우에는 클래스의 개발이 완료되기 전까지는 아무 작업을 하지 못할 것이다.
+    2. 일의 효율을 높이기 위해 클래스의 로직은 비워둔 채로 메서드를 사용 했을 때 나올 값을 return 에 하드 코딩 해둔다면 후자의 파트에서 동시에 작업이 가능하다.
+    3. 클래스를 만드는 파트와 이용하는 파트에서의 소통의 오류로 인해 클래스 자체에서 로직이 잘못되는 경우가 발생 할 수 있다.
+    4. 이를 방지하기 위해 interface 를 통해 메서드와 매개 변수까지 규정을 해 둔다면 miss communication 으로 인해 생기는 오류를 개발 과정에서 Error 처리를 통해 예방 할 수 있다.
+<br>
+
+- 클래스 Test 는 Inter 라는 인터페이스를 구현한다.
+
+```JAVA
+    public interface Inter{     // 클래스 개발 전 클래스 사용 팀과 상의하여 간략한 설계도 제작
+        public void func(int num1, int num2);
+    }
+    
+    class TestDummy(){          // 클래스 사용시 예상 결과물을 하드 코딩하여 리턴
+        public Test_Dummy(int num1, int num2){}
+        return 20;
+    }
+
+    class Test implements Inter{    // 미리 논의한 설계도 대로 제작하기 위해 interface 상속
+        public void func(int num1, int num2){
+            return num1 + num2;
+        }; 
+    }
+
+    public void main(){
+        TestDummy DevTeam2 = new TestDummy(5, 15);  // 클래스 개발과정 중 더미 클래스 사용
+        // Test DevTeam2 = new Test(5, 15);         // 클래스 개발 완성 시 변경
+    }
+```
+
+- 인터페이스도 상속이 된다.
+- 기본 JAVA 에서는 불가능한 다중 상속이 된다.
+
+```JAVA
+    interface I1{
+        public void a();
+    }
+    interface I2 extends I1{
+        public void b();
+    }
+    interface I3{
+        public void c();
+    }
+
+    class Test implements I2, I3 {
+        public void a(){}
+        public void b(){}
+        public void c(){}
+
+    }
+```
+
+### [abstract](abstract) vs interface
+
+- 추상 클래스 ( [abstract](abstract) ) 는 일반적인 클래스와 같이 내부에 로직을 작성 가능한 함수가 존재하며, 단지 정의를 해주기를 기대 ( 강제 ) 하는 추상 메서드가 동시에 존재 할 뿐이다.
+    - 함수와 같이 extends 를 사용, 오직 1개 만 상속 가능
+    ```JAVA
+        class Test extends Test2{}
+    ```
+- interface 는 클래스가 아닌 interface 라는 고유한 형태를 가지고 있으며 메서드 내부 로직 작성이 불가능하며 단지 메서드와 매개 변수 선언만 가능하다.
+    - 함수와 달리 implements 사용, 다중으로 상속 가능
+    ```JAVA
+        class Test implements Test2, Test3{}
+    ```
+

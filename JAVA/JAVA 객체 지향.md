@@ -339,7 +339,7 @@ B = non static field ( 인스턴스 멤버 )
     }
 ```
 
-## overloadin
+## overloading
 - 같은 이름의 함수이지만 다른 매개 변수를 가지고 있는 함수를 정의 할 때 사용
     - 계산기의 경우 정수 값 2개를 넣는 sum( int left, int right ) 실수 값 3개를 넣는 경우 sum( double one, double two, double three )
 - over loading = 새로운 것을 로드해 준다
@@ -593,3 +593,37 @@ xxxx
     ```
 
 ## 다형성
+
+- 다형성 ( polymorphism )
+- 하나의 메소드나 클래스가 있을 때 이것들이 다양한 방법으로 동작하는 것을 의미.
+- [overloading](#overloading) 이 다형성의 가장 쉬운 예제이다.
+<br>
+
+- A 라는 데이터 타입을 가진 test 라는 변수에 B 클래스를 인스턴스화 시켰다.
+    - 데이터 타입이 A 이기 때문에 B 클래스 내부에 있는 메서드는 사용이 불가능하다.
+    - 부모 A 클래스에서 상속받아 B 클래스에서 [override](#override) 한 함수는 사용이 가능하다.
+    - 우선 순위로는 B 클래스에서 override 한 함수가 더 높다.
+```JAVA
+    class A{
+        public void x(){System.out.println("A.x()") }
+    }
+    class B extends A{
+        public void x(){System.out.println("B.x()") }
+        public void y(){System.out.println("B.y()") }
+
+    }
+
+    A test = new B();
+    test.x();           // B.x() 출력
+    test.y();           // 데이터 타입이 A 이기 때문에 B 클래스 내부에 있는 함수 사용 불가 ( Error 처리 )
+```
+
+- [interface](#interface) 다형성
+    - interface 인 데이터 타입 변수에 interface 를 구현하는 클래스를 대입 할 수 있다.
+    ```JAVA
+        interface Inter{}
+
+        class Cl implements Inter{}
+
+        Inter test = new Cl();
+    ```

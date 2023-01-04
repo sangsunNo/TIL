@@ -47,6 +47,9 @@
 - 230103
     - [다형성](#다형성)
     - [예외](#예외)
+- 230105
+    - [finally](#finally)
+
 
 ---
 
@@ -644,3 +647,69 @@ xxxx
 ```
 
 ## 예외
+
+- 프로그램을 만든 프로그래머가 상정한 정상적인 처리에서 벗어나는 경우에 이를 처리하기 위한 방법.
+
+### try catch
+
+- 오류가 날 수 있다는 것을 가정하에 오류 발생시 대처 방법에 대해 프로그래밍 해두는 것.
+- 오류가 생길 수 있는 로직을 try 에 작성 후 예외 클래스의 인스턴스를 catch 의 매개변수르 준 후 발생시 대처 할 로직을 catch 에 작성.
+- 오류 발생시 프로그램을 멈추는 것이 아닌 catch 문을 실행 후 남아 있는 로직까지 마무리 한 후 종료.
+
+```JAVA
+    try{
+        System.out.println(12/0);
+    }catch(Exception e){
+        System.out.println("오류 발생 : " + e.GetMessage());
+    }
+```
+
+- java 에서 기본적으로 제공해주는 Error 발생 시 뒷수습 방법
+
+```JAVA
+    try{
+        System.out.println(12/0);
+    }catch(Exception e){
+        System.out.println("\n\ne.getMessage()\n"+e.getMessage());
+        System.out.println("\n\ne.toString()\n"+e.toString());
+        System.out.println("\n\ne.printStackTrace()");
+        e.printStackTrace();
+    }
+
+    /*
+    결과 
+    -------------------
+    e.getMessage()
+    / by zero
+
+
+    e.toString()
+    java.lang.ArithmeticException: / by zero
+
+
+    e.printStackTrace()
+    java.lang.ArithmeticException: / by zero
+    at MyApp.main(MyApp.java:4)
+
+    Process finished with exit code 0
+    -------------------
+    */
+```
+
+- 특정 한 Error 처리 및 다중 Error 처리
+    - catch 의 매개변수의 데이터 타입을 특정해 주면 된다 ( [overloading](#overloading) )
+    - if else 와 같은 로직으로 처리
+        - 최하단의 Exception e 가 최상단으로 올 경우 나머지 코드가 실행이 되지 않는다. 
+```JAVA
+    try{
+
+    } catch(ArithmeticException e){                 // 0 으로 나누었을 때의 산술 오류
+        System.out.println("ArithmeticException" + e);
+    } catch(ArrayIndexOutOfBoundsException e){      // 배열의 크기를 벗어나는 index 사용시 오류
+        System.out.println("ArrayIndexOutOfBoundsException" + e);
+    } catch(Exception e){                           // 위 두 개 이외의 전부
+        System.out.println("Error" + e);
+    }
+```
+
+## finally

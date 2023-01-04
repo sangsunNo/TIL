@@ -43,9 +43,11 @@
     - [다지인 패턴](#다지인-패턴)
     - [interface](#interface)
 - 230101
-    -[다형성](#다형성)
+    - [다형성](#다형성)
 - 230103
-    -[다형성](#다형성)
+    - [다형성](#다형성)
+    - [예외](#예외)
+
 ---
 
 
@@ -598,7 +600,7 @@ xxxx
 
 - 다형성 ( polymorphism )
 - 하나의 메소드나 클래스가 있을 때 이것들이 다양한 방법으로 동작하는 것을 의미.
-- [overloading](#overloading) 이 다형성의 가장 쉬운 예제이다.
+- [overloading](#overloading) 이 다형성의 가장 대표적인 예이다.
 <br>
 
 - A 라는 데이터 타입을 가진 test 라는 변수에 B 클래스를 인스턴스화 시켰다.
@@ -629,3 +631,16 @@ xxxx
 
         Inter test = new Cl();
     ```
+
+- James 라는 사람이 직장에서는 Programmer 가정에서는 Father 동아리에서 Member 라면 interface 를 통해 Programmer, Father, Member 를 상속 받아 온 후 상황에 맞는 데이터 타입을 변수를 생성할 때 유용하다.
+
+```JAVA
+    interface Father{}
+    interface Programmer{}
+    interface Member{}
+    class James implements Programmer, Father, Member {}
+
+    Father FJames = new James();
+```
+
+## 예외

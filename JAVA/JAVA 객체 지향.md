@@ -50,8 +50,10 @@
 - 230105
     - [finally](#finally)
     - [예외 던지기](#예외-던지기)
-
-
+    - [throws 책임의 전가](#throws-책임의-전가)
+    - [예외 만들기](#예외-만들기)
+- 230105
+    - [checked & unchecked Exception](#checked-&-unchecked-Exception)
 ---
 
 
@@ -723,3 +725,167 @@ xxxx
 - 예외를 강제화 해놓은 경우
     - try catch 문을 사용하지 않으면 오류 발생
         - ex) BufferReader()
+
+### throws 책임의 전가
+
+- 현재 코드상에서 강제 또는 예외 처리를 해줬으면 하는 부분에 대해 현재 코드가 아닌 상속 받은 코드에서 처리를 하도록 책임을 전가한다.
+
+- class B 에서 처리하지 않고 class C 로 책임을 전가
+
+```JAVA
+    package org.opentutorials.javatutorials.exception;
+    import java.io.*;
+
+    class B{
+        void run() throws IOException, FileNotFoundException{
+            BufferedReader bReader = null;
+            String input = null;
+            bReader = new BufferedReader(new FileReader("out.txt"));
+            input = bReader.readLine();
+            System.out.println(input);
+        }
+    }
+
+    class C{
+        void run(){
+            B b = new B();
+            try {
+                b.run();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public class ThrowExceptionDemo {
+        public static void main(String[] args) {
+            C c = new C();
+            c.run();
+        }   
+    }
+```
+
+- class B 에서 class C 로 class C 에서 main 으로 전가
+
+```JAVA
+    package org.opentutorials.javatutorials.exception;
+    import java.io.*;
+
+    class B{
+        void run() throws IOException, FileNotFoundException{
+            BufferedReader bReader = null;
+            String input = null;
+            bReader = new BufferedReader(new FileReader("out.txt"));
+            input = bReader.readLine();
+            System.out.println(input);
+        }
+    }
+
+    class C{
+        void run() throws IOException, FileNotFoundException{
+            B b = new B();
+            b.run();
+        }
+    }
+
+    public class ThrowExceptionDemo {
+        public static void main(String[] args) {
+            C c = new C();
+            try {
+                c.run();
+            } catch (FileNotFoundException e) {
+                System.out.println("out.txt 파일은 설정 파일 입니다. 이 파일이 프로잭트 루트 디렉토리에 존재해야 합니다.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }   
+    }
+```
+
+### 예외 만들기
+
+- 개발자가 판단했을 때에 적절치 않은 상황에 대해 직접 예외를 작성 가능하다.
+
+- 상황에 따라 필요한 방법을 사용
+    - 입력 값이 들어오는 부분에서 값 확인 후 예외 처리
+
+    ```JAVA
+        public void setOprands(int left, int right){
+            if(right == 0){
+                throw new IllegalArgumentException("두번째 인자의 값은 0이 될 수 없습니다.");
+            }
+            this.left = left;
+            this.right = right;
+        }
+    ```
+
+    - 계산 과정에서 적절치 못한 값인 경우 예외 처리
+    
+    ```JAVA
+        public void divide(){
+            if(this.right == 0){
+                throw new ArithmeticException("0으로 나누는 것은 허용되지 않습니다.");
+            }
+        }
+    ```
+
+- 주요 Exception 리스트
+
+|예외|상황|
+|:--:|:--:|
+|IllegalArgumentException|매개변수가 의도하지 않은 상황을 유발시킬 때|
+|IllegalStateException|메소드를 호출하기 위한 상태가 아닐 때|
+|NullPointerException|매개 변수 값이 null 일 때|
+|IndexOutOfBoundsException|인덱스 매개 변수 값이 범위를 벗어날 때|
+|ArithmeticException|산술적인 연산에 오류가 있을 때|
+
+### checked & unchecked Exception
+
+- 부모의 클래스의 상속 관계 중에 RuntimeException 의 유무에 따라 checked unchecked 로 나뉘게 된다.
+
+- RuntimeException 없는 경우 : checked Exception
+    - 강제적으로 예외를 설정해 줘야하는 경우
+    - 사용자가 예외 발생시 상황을 계선할 여지가 있는 경우
+        - BufferedReader()
+        - 파일을 읽어 오는데 파일이 없는 경우 : 다른 파일을 설정하거나 미리 설정해둔 파일을 읽어 올 수 있게 개선의 기회를 준다.
+- RuntimeException 있는 경우 : unchecked Exception
+    - 강제적으로 예외를 설정하지 않아도 되는 경우
+    - 사용자가 예외 발생시 더 이상 상황을 타개할 수 없는 경우
+        - ArithmeticException() 
+        - 생성한 배열의 크기보다 더 큰 index 를 요청 할 때에
+
+- 사용자 정의 예외
+    - 상속을 통한 예외 방법 설정 
+
+```JAVA
+    class DivideException extends RuntimeException {
+        DivideException(){
+            super();
+        }
+        DivideException(String message){
+            super(message);
+        }
+    }
+
+
+    class Calculator{
+        int left, right;
+
+        public void setOprands(int left, int right){        
+            this.left = left;
+            this.right = right;
+        }
+
+        public void divide(){
+            if(this.right == 0){
+                throw new DivideException("0으로 나누는 것은 허용되지 않습니다.");
+            }
+            System.out.print(this.left/this.right);
+        }
+    }
+```
+
+
+<img src="../PIC/Checked Unchecked Exception.png">

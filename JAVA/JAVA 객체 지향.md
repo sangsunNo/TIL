@@ -50,10 +50,15 @@
 - 230105
     - [finally](#finally)
     - [예외 던지기](#예외-던지기)
+- 230106
     - [throws 책임의 전가](#throws-책임의-전가)
     - [예외 만들기](#예외-만들기)
-- 230105
     - [checked & unchecked Exception](#checked-&-unchecked-Exception)
+- 230107
+    - [object](#object)
+    - [finalize](#finalize)
+    - [가비지 컬렉션 ( garbage collection )](#가비지-컬렉션-(-garbage-collection-))
+    - [clone](#clone)
 ---
 
 
@@ -887,5 +892,69 @@ xxxx
     }
 ```
 
-
 <img src="../PIC/Checked Unchecked Exception.png">
+
+## object
+
+- 모든 클래스들의 공통되는 조상.
+- 자바에서 상속이란 필수적이다. 자의적으로 상속을 하건 않았던 기본적인 상속을 하게 된다.
+
+- 패키지 : org.opentutorials.javatutorials.progenitor
+- 클래스 : Calculator
+- 인스턴스 식별자 ( 주소 ) : 11be650f
+- 골뱅이 전후로 인스턴스가 소속된 클래스의 위치와 인스턴스를 식별하는 값
+- c1 만 출력 할 때에 암묵적으로 toString() 함수를 호출하도록 약속되어 있다.
+- 클래스에 포함되어 있지 않은 toString() 함수를 호출 할 수 있는 것 역시 extends Object 를 default 값으로 설정하여 생략하더라도 포함이 되어 있기 때문에
+
+```JAVA
+    Calculator c1 = new Calculator();
+    System.out.println(c1);
+    System.out.println(c1.toString());
+
+    // reslut
+    // org.opentutorials.javatutorials.progenitor.Calculator@11be650f
+    // org.opentutorials.javatutorials.progenitor.Calculator@11be650f
+```
+
+## equals & ==
+ 
+- equals
+    - 데이터 값이 같은지 비교.
+    - 값이 같으면 True 를 리턴 해준다
+- ==
+    - 원시 데이터 형으로 불리는 자바에서 기본적으로 제공되는 데이터 타입인 byte, short, int, long, float double boolean, char 와 같이 new 연산자를 이용해서 생성하지 않아도 되는 데이터에 사용.
+    - 객체가 같은지 비교 = 주소 값이 같은지 비교..
+    - 값이 같더라도 주소값이 다르면 False 를 리턴 해준다.
+
+- True
+- False
+
+```JAVA
+    String str1 = "a";
+    String str2 = "a";
+
+    String str3 = new String("a");
+    String str4 = new String("a");
+
+    /*
+        True
+        -----
+        str1 == str2
+        str1.equals(str3)
+        str3.equals(str4)
+        
+        False
+        -----
+        str1 == str3
+    */
+```
+
+## finalize
+
+- 객체가 소멸될 때에 호출되기로 약속된 메소드, 하지만 많은 전문가들이 이 메소드의 사용을 만류하고 있다.
+
+### 가비지 컬렉션 ( garbage collection )
+
+- 인스턴스를 생성한다는 것은 컴퓨터의 메모리를 사용한다는 것이다. 사용하는 메모리가 적을수록 좋은 프로그램이다. JAVA 는 이러한 방법을 제한적으로 제공하고 있는데 더 이상 사용되지 않는 변수를 찾고  자동적으로 램에서 제거하는데 이를 가비지 컬렉션이라고 한다.
+
+## clone

@@ -920,11 +920,11 @@ xxxx
  
 - equals
     - 데이터 값이 같은지 비교.
-    - 값이 같으면 True 를 리턴 해준다
+    - 값이 같으면 True 를 리턴 해준다.
 - ==
     - 원시 데이터 형으로 불리는 자바에서 기본적으로 제공되는 데이터 타입인 byte, short, int, long, float double boolean, char 와 같이 new 연산자를 이용해서 생성하지 않아도 되는 데이터에 사용.
-    - 객체가 같은지 비교 = 주소 값이 같은지 비교..
-    - 값이 같더라도 주소값이 다르면 False 를 리턴 해준다.
+    - 객체가 같은지 비교 == 주소 값이 같은지 비교..
+    - 데이터값이 같더라도 주소값이 다르면 False 를 리턴 해준다.
 
 - True
 - False
@@ -958,3 +958,19 @@ xxxx
 - 인스턴스를 생성한다는 것은 컴퓨터의 메모리를 사용한다는 것이다. 사용하는 메모리가 적을수록 좋은 프로그램이다. JAVA 는 이러한 방법을 제한적으로 제공하고 있는데 더 이상 사용되지 않는 변수를 찾고  자동적으로 램에서 제거하는데 이를 가비지 컬렉션이라고 한다.
 
 ## clone
+
+- 객체가 있을 때 그 객체와 똑같은 객체를 복제해 주는 기능이 clone 메소드의 역할이다.
+
+- 사용법
+    - class 가 clone 이 가능하도록 미리 명시를 해주어야 한다.
+    - java.lang 패키지 내의 Object 라는 클래스의 clone 메소드는 protected 라는 [접근 제어자](#접근-제어자)를 가지고 있는데 protected 접근 제어자는 다른 패키지에서 사용이 불가능하고 상속만 가능하기 때문에 메소드를 상속 받은 후에 overide  한다.
+    - [예외 던지기](예외-던지기) 가 적용되어 있기 때문에 예외문을 작성 해야한다.
+
+```JAVA
+    class Test implements Clonable{     // clone 가능 하도록 명시
+
+        public Object clone() throws CloneNotSupportedException{    // 상속  받아서 명시
+            return super.clone();                              // 작성해야 하는 예외문
+        }                                                      // 한번 더 throw
+    }
+```

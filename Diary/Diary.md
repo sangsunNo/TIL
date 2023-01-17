@@ -6,10 +6,10 @@
     (148) Java - 제네릭 (3/5) : 제네릭의 특징 1 ~ (160) 프로그래밍 수업을 마치며
 
 #### 230108
-
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)
     (138) Java - 상수와 enum (1/4) : 상수에대한복습 ~ (147) Java - 제네릭 (2/5) : 제네릭의 사용이유
+    
 #### 230107
 - [JAVA 객체 지향](../JAVA/JAVA%20%EA%B0%9D%EC%B2%B4%20%EC%A7%80%ED%96%A5.md)
     - [생활코딩](https://www.youtube.com/playlist?list=PLuHgQVnccGMCeAy-2-llhw3nWoQKUvQck)

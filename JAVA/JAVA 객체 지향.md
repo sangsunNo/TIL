@@ -59,6 +59,10 @@
     - [finalize](#finalize)
     - [가비지 컬렉션 ( garbage collection )](#가비지-컬렉션-(-garbage-collection-))
     - [clone](#clone)
+- 230108
+    - [enum](#enum)
+    - [enum과 생성자](#enum과-생성자)
+
 ---
 
 
@@ -963,14 +967,102 @@ xxxx
 
 - 사용법
     - class 가 clone 이 가능하도록 미리 명시를 해주어야 한다.
-    - java.lang 패키지 내의 Object 라는 클래스의 clone 메소드는 protected 라는 [접근 제어자](#접근-제어자)를 가지고 있는데 protected 접근 제어자는 다른 패키지에서 사용이 불가능하고 상속만 가능하기 때문에 메소드를 상속 받은 후에 overide  한다.
+    - java.lang 패키지 내의 Object 라는 클래스의 clone 메소드는 protected 라는 [접근 제어자](#접근-제어자)를 가지고 있는데 protected 접근 제어자는 다른 패키지에서 사용이 불가능하고 상속만 가능하기 때문에 메소드를 상속 받은 후에 override  한다.
     - [예외 던지기](예외-던지기) 가 적용되어 있기 때문에 예외문을 작성 해야한다.
+
+- 모든 클래스의 조상은 Object 이다.
 
 ```JAVA
     class Test implements Clonable{     // clone 가능 하도록 명시
 
-        public Object clone() throws CloneNotSupportedException{    // 상속  받아서 명시
-            return super.clone();                              // 작성해야 하는 예외문
-        }                                                      // 한번 더 throw
+        Stirng name;
+        Test(String name){
+            this.name = name;
+        }
+        public Object clone() throws CloneNotSupportedException{    // 상속 후 override
+            return super.clone();                                   // 필수로 작성해야 하는 예외문
+        }                                                           // 한번 더 throw 해줌
     }
+
+    public static void main(String[] args) {
+        Test s1 = new Test("myName");
+
+        try {
+            /* clone 의 return 값이 Object 이기 때문에
+             데이터 형식을 Object 로 설정하거나 Test 라 명시 해주어야 한다. */
+            Object t2 = t1.clone();
+            // Test t2 = (Test)t1.clone();
+
+            System.out.println(t1.name);
+            System.out.println(t2.name);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }
+```
+
+## enum
+- 탄생 배경
+    - 상수로 지정된 데이터의 선언과 관리를 위해 만들어졌다.
+    - 기존의 상수들은 우항의 값이 같을 경우 같다고 출력하거나 이를 해결 한 경우 코드의 가독성이 너무 떨어지거나 특정 상황에서 사용이 불가능 한 경우가 발생.
+
+```JAVA
+    /*
+    // 가독석이 안좋고 특정 상황에서 사용이 불가능한 같은 의미의 코드
+        class Fruit{
+            public static final Fruit APPLE = new Fruit();
+            public static final Fruit BANANA = new Fruit();
+        }
+    */  
+
+    enum Fruit{
+        APPLE, BANANA
+    }
+
+    enum Company{
+        GOOGLE, APPLE
+    }
+
+    public static void main(Stirng[] args){
+        Fruit type = Fruit.APPLE;
+
+        switch(type){
+            case APPLE:
+                System.out.println("apple");
+                break;
+            case BANANA:
+                System.out.println("banana");
+                break;
+        }
+    }
+```
+
+### enum과 생성자
+
+```JAVA
+    enum Fruit{
+        APPLE("red"), BANANA("yellow");
+        
+        public String color;
+
+        Fruit(String color){
+            System.out.println("Call Constructor " + this);
+            this.color = color;
+        }
+    }
+
+    public static void main(Stirng[] args){
+        Fruit type = Fruit.APPLE;
+
+        switch(type){
+            case APPLE:
+                System.out.println("apple" + Fruit.Apple.color);
+                break;
+            case BANANA:
+                System.out.println("banana" + Fruit.Apple.color);
+                break;
+        }
+    }
+    
+    // 
 ```

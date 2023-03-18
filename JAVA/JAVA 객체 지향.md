@@ -1,67 +1,48 @@
-## DATE: 221218 ~ 2301010
 ## Index
 ---
 
-- 221218
-    - [추상화](#추상화--abstract)
-    - [부품화](#부품화)
-    - [은닉화, 캡슐화](#은닉화-캡슐화)
-    - [인터페이스](#인터페이스)
-    - [리팩토링](#리팩토링)
-    - [클래스와 인스턴스 그리고 객체](#클래스와-인스턴스-그리고-객체)
-    - [this](#this)
-    - [클래스 멤버 인스턴스 멤버 그리고 static, dynamic](#클래스-멤버-인스턴스-멤버-그리고-static-dynamic)
-    - [클래스 함수 ( 클래스 메서드 )](#클래스-함수--클래스-메서드)
-    - [static field, non static field](#static-field-non-static-field)
-- 221219
-    - [유효범위 ( Scope )](#유효범위--scope)
-    - [생성자 ( Constructor )](#생성자--constructor)
-    - [상속](#상속)
-- 221225
-    - [상속](#상속)
-    - [생성자](#생성자)
-    - [super](#super)
-- 221226
-    - [override](#override)
-    - [overloading](#overloading)
-    - [컴파일과 클래스](#컴파일과-클래스)
-- 221227
-    - [컴파일과 클래스](#컴파일과-클래스)
-    - [classpath](#classpath)
-    - [환경변수](#환경변수)
-    - [패키지](#패키지)
-- 221229
-    - [패키지](#패키지)
-    - [API](#API)
-    - [접근 제어자](#접근-제어자)
-- 221230
-    - [접근 제어자](#접근-제어자)
-    - [클래스 접근제어자](#클래스-접근제어자)
-    - [abstract](#abstract)
-- 221231
-    - [abstract](#abstract)
-    - [다지인 패턴](#다지인-패턴)
-    - [interface](#interface)
-- 230101
-    - [다형성](#다형성)
-- 230103
-    - [다형성](#다형성)
-    - [예외](#예외)
-- 230105
-    - [finally](#finally)
-    - [예외 던지기](#예외-던지기)
-- 230106
-    - [throws 책임의 전가](#throws-책임의-전가)
-    - [예외 만들기](#예외-만들기)
-    - [checked & unchecked Exception](#checked-&-unchecked-Exception)
-- 230107
-    - [object](#object)
-    - [finalize](#finalize)
-    - [가비지 컬렉션 ( garbage collection )](#가비지-컬렉션-(-garbage-collection-))
-    - [clone](#clone)
-- 230108
-    - [enum](#enum)
-    - [enum과 생성자](#enum과-생성자)
+- [추상화](#추상화--abstract)
+- [부품화](#부품화)
+- [은닉화, 캡슐화](#은닉화-캡슐화)
+- [인터페이스](#인터페이스)
+- [리팩토링](#리팩토링)
+- [클래스와 인스턴스 그리고 객체](#클래스와-인스턴스-그리고-객체)
+- [this](#this)
+- [클래스 멤버 인스턴스 멤버 그리고 static, dynamic](#클래스-멤버-인스턴스-멤버-그리고-static-dynamic)
+- [클래스 함수 ( 클래스 메서드 )](#클래스-함수--클래스-메서드)
+- [static field, non static field](#static-field-non-static-field)
+- [유효범위 ( Scope )](#유효범위--scope)
+- [생성자 ( Constructor )](#생성자--constructor)
+- [상속](#상속)
+- [생성자](#생성자)
+- [super](#super)
+- [override](#override)
+- [overloading](#overloading)
+- [컴파일과 클래스](#컴파일과-클래스)
+- [classpath](#classpath)
+- [환경변수](#환경변수)
+- [패키지](#패키지)
+- [API](#API)
+- [접근 제어자](#접근-제어자)
+- [클래스 접근제어자](#클래스-접근제어자)
+- [abstract](#abstract)
+- [다지인 패턴](#다지인-패턴)
+- [interface](#interface)
+- [다형성](#다형성)
+- [예외](#예외)
+- [finally](#finally)
+- [예외 던지기](#예외-던지기)
+- [throws 책임의 전가](#throws-책임의-전가)
+- [예외 만들기](#예외-만들기)
+- [checked & unchecked Exception](#checked-&-unchecked-Exception)
+- [object](#object)
+- [finalize](#finalize)
+- [가비지 컬렉션 ( garbage collection )](#가비지-컬렉션-(-garbage-collection-))
+- [clone](#clone)
+- [enum](#enum)
+- [enum과 생성자](#enum과-생성자)
+- [복제](#복제)
+- [참조 ( reference )](#참조-(-reference-))
 
 ---
 
@@ -1038,12 +1019,21 @@ xxxx
 ```
 
 ### enum과 생성자
+- 생성자를 통해 기존에 불가능 하거나 더욱 복잡한 코드로 가능했던 것들이 더 작고 가독성 좋은 코드로 사용 가능하다.
+- 기존에는 열거 할 수 없었던 특성이 가능하게 되어 valuse 함수를 통해 열거까지도 가능하다
 
 ```JAVA
     enum Fruit{
         APPLE("red"), BANANA("yellow");
         
         public String color;
+        /*
+        // 사용자가 변수에 접근 못하도록 설정도 가능
+            private Stirng color;
+            public String getColor(){
+                return this.color;
+            }
+        */
 
         Fruit(String color){
             System.out.println("Call Constructor " + this);
@@ -1056,13 +1046,41 @@ xxxx
 
         switch(type){
             case APPLE:
-                System.out.println("apple" + Fruit.Apple.color);
+                System.out.println("apple" + Fruit.APPLE.getColor);
                 break;
             case BANANA:
-                System.out.println("banana" + Fruit.Apple.color);
+                System.out.println("banana" + Fruit.BANANA.getColor);
                 break;
+        }
+
+        System.out.println("-------");
+
+        for(Fruit f : Fruit.values()){
+            System.out.println(f);
         }
     }
     
-    // 
+    /*
+        Call Constructor APPLE
+        Call Constructor BANANA
+        apple red
+        -------
+        APPLE
+        BANANA
+    */
 ```
+
+## 복제
+
+- 데이터의 값을 복사한다.
+- 다른 곳에 있던 데이터의 값을 복사해서 저장하는 것이기 때문에 내가 가진 값을 다른 값으로 다시 바꾸어도 원래 있던 곳의 데이터에는 아무 변화가 없다.
+
+```JAVA
+    int a = 1;
+    int b = a;  // b = 1
+    int b = 2;  // a = 1, b = 2
+```
+
+## 참조 ( reference )
+
+- [기본 데이터 타입](./JAVA%20%EA%B8%B0%EB%B3%B8%20%EB%AC%B8%EB%B2%95.md#JAVA-기본-문법)

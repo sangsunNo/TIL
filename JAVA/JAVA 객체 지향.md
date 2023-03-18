@@ -43,6 +43,7 @@
 - [enum과 생성자](#enum과-생성자)
 - [복제](#복제)
 - [참조 ( reference )](#참조-(-reference-))
+- [제네릭](#제네릭)
 
 ---
 
@@ -96,18 +97,18 @@
     - 고양이라는 객체를 추상화하여 클래스를 생성하고 클래스를 통해 인스턴스 생성
 
 ```JAVA
-    // 고양이라는 객체를 추상화하여 클래스를 생성
-    public class Cat {
-        ...
-    }
+// 고양이라는 객체를 추상화하여 클래스를 생성
+public class Cat {
+    ...
+}
 
-    public static void main(String[] args){
+public static void main(String[] args){
 
-    // Cat 이라는 데이터 타입의 cheese라는 변수에 Cat 클래스를 인스턴스화
-    // Cat 이라는 데이터 타입의 spot라는 변수에 Cat 클래스를 인스턴스화
-        Cat cheese = new Cat('치즈냥이');
-        Cat spot = new Cat('얼룩냥이');
-    }
+// Cat 이라는 데이터 타입의 cheese라는 변수에 Cat 클래스를 인스턴스화
+// Cat 이라는 데이터 타입의 spot라는 변수에 Cat 클래스를 인스턴스화
+    Cat cheese = new Cat('치즈냥이');
+    Cat spot = new Cat('얼룩냥이');
+}
 ```
 
 ## this
@@ -123,29 +124,29 @@
  this 를 사용하는 이유는 보통 함수의 파라미터 명과 클래스의 변수명을 동일하게 설정하는데 이 때 함수 내부의 지역변수가 클래스 변수보다 우선 순위로 설정이 되어 클래스 변수의 값이 변경되지 않는다 그래서 this 를 통해 명시해주는 것
 
 ```JAVA
-    class Test{
-        int a;
-        // self.a   // Python 사용 시 인스턴스 고유 변수라면
-                    // __init__ 선언 후 self 를 붙인 채 생성을 했었던 거 같은데...
+class Test{
+    int a;
+    // self.a   // Python 사용 시 인스턴스 고유 변수라면
+                // __init__ 선언 후 self 를 붙인 채 생성을 했었던 거 같은데...
 
-        public void setA(int a){
-            // this.a = a;
-            // a = a;
-        }
-
-        public void printA(){
-            System.out.println(this.a); // 2 출력
-            System.out.println(a);      // 오류가 날 줄 알았지만 2 출력
-        }
+    public void setA(int a){
+        // this.a = a;
+        // a = a;
     }
 
-    public class MyApp {
-        public static void main(String[] args){
-            Test test = new Test();
-            test.setA(2);
-            test.printA();
-        }
+    public void printA(){
+        System.out.println(this.a); // 2 출력
+        System.out.println(a);      // 오류가 날 줄 알았지만 2 출력
     }
+}
+
+public class MyApp {
+    public static void main(String[] args){
+        Test test = new Test();
+        test.setA(2);
+        test.printA();
+    }
+}
 ```
 
 - JAVA 의 this와 Python 의 self 가 비슷 한 거 같은데...  
@@ -168,26 +169,26 @@ JAVA 에서는 함수 파라미터의 변수명과 클래스의 변수명의 같
 - 인스턴스 멤버의 경우 동적 ( dynamic ) 이 default 로 설정되어 있어 static 인 경우에만 명시해주면 된다
 
 ```JAVA
-    class Test {
-        static int class_variable = 0;  // 클래스 멤버
-        int instance_variable = 1;      // 인스턴스 멤버
-    }
+class Test {
+    static int class_variable = 0;  // 클래스 멤버
+    int instance_variable = 1;      // 인스턴스 멤버
+}
 
-    public static void main(String[] args){
-        Test t1 =  new Test();
-        Test t2 =  new Test();
+public static void main(String[] args){
+    Test t1 =  new Test();
+    Test t2 =  new Test();
 
-        System.out.println(t1.instance_variable);   // 1
-        t1.instance_variable = 10;
-        System.out.println(t1.instance_variable);   // 10
-        System.out.println(t2.instance_variable);   // 1 t1 에서만 변경 t2 와 관계 없다
+    System.out.println(t1.instance_variable);   // 1
+    t1.instance_variable = 10;
+    System.out.println(t1.instance_variable);   // 10
+    System.out.println(t2.instance_variable);   // 1 t1 에서만 변경 t2 와 관계 없다
 
-        t1.print_class_variable();  // 0
-        Test.class_variable = 100;  // 인스턴스가 아닌 클래스 명을 통해서 변수에 접근
-        t1.print_class_variable();  // 100
-        t2.print_class_variable();  // 100
-                                    // 같은 클래스의 인스턴스끼리는 공유하는 값이기 때문에 둘 다 바뀜
-    }
+    t1.print_class_variable();  // 0
+    Test.class_variable = 100;  // 인스턴스가 아닌 클래스 명을 통해서 변수에 접근
+    t1.print_class_variable();  // 100
+    t2.print_class_variable();  // 100
+                                // 같은 클래스의 인스턴스끼리는 공유하는 값이기 때문에 둘 다 바뀜
+}
 ```
 
 ## 클래스 함수 ( 클래스 메서드 )
@@ -196,7 +197,7 @@ JAVA 에서는 함수 파라미터의 변수명과 클래스의 변수명의 같
 인스턴스를 생성시 메모리를 추가적으로 소비하게 되고 속도적 측면에서도 손해임으로 클래스 명을 통해 클래스에 직접 접근해서 사용하는게 이득이다
 
 ```JAVA
-    Calculator.sum(10, 20);
+Calculator.sum(10, 20);
 ```
 
 ## static field, non static field
@@ -235,13 +236,13 @@ B = non static field ( 인스턴스 멤버 )
 기존에 계산기라는 인스턴스 객체를 생성한 후에 더하기 라는 함수를 호출하며 파라미터를 입력하였다면 생성자를 사용한다면 객체를 생성과 동시에 값을 받아오고 파라미터 없이 함수만 호출하여 기존에 입력 받았던 값으로 계산
 
 ```JAVA
-    // 기존 방법
-        Calculator cal1 = new Calculator();
-        cal1.sum(10, 20)    // 30
-        
-    // 생성자 사용
-        Calculator cal2 = new Calculator(10, 20);
-        cal1.sum()    // 30
+// 기존 방법
+    Calculator cal1 = new Calculator();
+    cal1.sum(10, 20)    // 30
+    
+// 생성자 사용
+    Calculator cal2 = new Calculator(10, 20);
+    cal1.sum()    // 30
 ```
 
 ## 상속
@@ -266,11 +267,11 @@ B = non static field ( 인스턴스 멤버 )
 - test 라는 인스턴스 객체를 생성 할 때에, new TestClass 를 통해 객체를 생성 하는데, 이 때 자바가 자동으로 생성해준 생성자를 통해 객체를 생성한다
 
 ```JAVA
-    public class TestClass {
-        public static void main(String[] args) {
-            TestClass  test = new TestClass();
-        }
+public class TestClass {
+    public static void main(String[] args) {
+        TestClass  test = new TestClass();
     }
+}
 ```
 
 - 기본 생성자가 아닌, 사용자가 매개변수를 가지는 생성자를 생성하는 경우, new 를 통해 클래스를 인스턴스화 시킬 때에 규칙 미준수시 Error 발생
@@ -280,22 +281,24 @@ B = non static field ( 인스턴스 멤버 )
     - 파라미터를 넘기지 않고도 Error를 발생 시키지 않으려면 파라미터를 받지 않겠다는 것을 따로 명시 해야한다
 
 ```JAVA
-    public class TestClass {
-        public TestClass(int param1) {}
-            public static void main(String[] args) {
-                TestClass  test = new TestClass();      // int형 파라미터를 넘기지 않기 때문에 에러 발생
-            }
+public class TestClass {
+    public TestClass(int param1) {}
+
+    public static void main(String[] args) {
+        TestClass  test = new TestClass();      // int형 파라미터를 넘기지 않기 때문에 에러 발생
+    }
 }
 ```
 
 ```JAVA
-    public class TestClass {
-        public TestClass() {}               // 파라미터를 받지않는 경우 추가 ( 에러 발생 X )
-        public TestClass(int param1) {}
-            public static void main(String[] args) {
-                TestClass  test = new TestClass();      // 파라미터를 받지않는 생성자가 있기 때문에 에러 발생 X
-                TestClass  test2 = new TestClass(2);    // int 형 변수를 넘겨받는 생성자가 있기 때문에 에러 발생 X
-            }
+public class TestClass {
+    public TestClass() {}               // 파라미터를 받지않는 경우 추가 ( 에러 발생 X )
+    public TestClass(int param1) {}
+
+    public static void main(String[] args) {
+        TestClass  test = new TestClass();      // 파라미터를 받지않는 생성자가 있기 때문에 에러 발생 X
+        TestClass  test2 = new TestClass(2);    // int 형 변수를 넘겨받는 생성자가 있기 때문에 에러 발생 X
+    }
 }
 ```
 
@@ -313,14 +316,14 @@ B = non static field ( 인스턴스 멤버 )
 - this 가 자기 자신 클래스를 의미하는 것과 같이 super 은 부모 클래스를 의미
 
 ```JAVA
-    class ChildTest extends ParentTest {
-        public ChildTest(int left, int right) {
-            super(left, right);                     // 상위, 하위 클래스 생성자 역할 이 같은 경우 상위 클래스에서 상송
-            this.child_blabla = left + right;       // 하위 클래스에서 추가로 덧붙일 내용은 super 하단에 작성
-        }
+class ChildTest extends ParentTest {
+    public ChildTest(int left, int right) {
+        super(left, right);                     // 상위, 하위 클래스 생성자 역할 이 같은 경우 상위 클래스에서 상송
+        this.child_blabla = left + right;       // 하위 클래스에서 추가로 덧붙일 내용은 super 하단에 작성
     }
+}
 ```
-## override
+ㅐ## override
 
 - 기존의 상속에서는 부모의 기능에 자식의 기능을 추가하여 사용을 하였지만 override 는 부모에게 받아온 기능을 수정해서 사용하는 것
 - over ride = 덮어 쓰기
@@ -332,11 +335,11 @@ B = non static field ( 인스턴스 멤버 )
     - 매개변수 데이터 타입, 개수, 순서가 동일 해야한다
 - **수정해서 사용**
     - [super](#super) 을 통해 부모 클래스의 함수를 사용하고 반환된 값을 통해 추가 작업
-```JAVAwe
-    public int test(){
-        int val = super.avg();
-        // 추가 작업
-    }
+```JAVA
+public int test(){
+    int val = super.avg();
+    // 추가 작업
+}
 ```
 
 ## overloading
@@ -347,36 +350,38 @@ B = non static field ( 인스턴스 멤버 )
     - 함수 이름을 같게 선언하며 받아오는 매개변수를 다르게 해주면 된다
     - 매개 변수가 다르다는 조건에서 리턴 값을 다르게 할 수 있다
     ```JAVA
-        public class MyApp {
-            void A (){
-                System.out.println("void A()");
-            }
-            int A (int arg1){
-                System.out.println("int A (int arg1)");
-                return 1;
-            }
-            void A (String arg1){
-                System.out.println("void A (String arg1)");
-            }
-
-            public static void main(String[] args) {
-                MyApp od = new MyApp();
-
-                od.A();             // 매개변수 없음 리턴 없음
-
-                int a = od.A(1);    // int 형 매개변수 리턴 있음
-                System.out.println("return int A() : " + a);
-                
-                od.A("coding everybody");   // 문자 형 매개변수 리턴 없음
-            }
+    public class MyApp {
+        void A (){
+            System.out.println("void A()");
         }
+
+        int A (int arg1){
+            System.out.println("int A (int arg1)");
+            return 1;
+        }
+
+        void A (String arg1){
+            System.out.println("void A (String arg1)");
+        }
+
+        public static void main(String[] args) {
+            MyApp od = new MyApp();
+
+            od.A();             // 매개변수 없음 리턴 없음
+
+            int a = od.A(1);    // int 형 매개변수 리턴 있음
+            System.out.println("return int A() : " + a);
+            
+            od.A("coding everybody");   // 문자 형 매개변수 리턴 없음
+        }
+    }
     ```
 ## 컴파일과 클래스
 
 - JAVA 파일을 컴파일 했을 때에 class 파일이 생성되는데 이 때에 소스코드 내부의 클래스가 각자 생성 된다.
 - JAVA 파일을 컴퓨터가 인식할 수 있게 하는 과정이 컴파일이고 그 결과물이 class 파일이다.
 ```JAVA
-    javac JAVA_파일명.java
+javac JAVA_파일명.java
 ```
 
 ### classpath
@@ -386,8 +391,8 @@ B = non static field ( 인스턴스 멤버 )
     - .class 파일이 다른 폴더이면 Error O
         - java -classpath ""호출할 클래스의 파일 위치"" "실행할 파일명"
         ```JAVA
-            java -classpath "." TestFile    // . = 현재 폴더
-            java -classpath ".;lib" TestFile    // 세미 콜론으로 여러 폴더 추가 가능
+        java -classpath "." TestFile    // . = 현재 폴더
+        java -classpath ".;lib" TestFile    // 세미 콜론으로 여러 폴더 추가 가능
         ```
 
 ## 환경변수
@@ -407,9 +412,9 @@ B = non static field ( 인스턴스 멤버 )
     - import 패키지 위치.사용 할 클래스
 
 ```JAVA
-    package test1.test2.test3
-    import test1.test2.test3.myclass  
-    import test1.test2.test3.*
+package test1.test2.test3
+import test1.test2.test3.myclass  
+import test1.test2.test3.*
 ```
 ## API
 
@@ -423,31 +428,31 @@ B = non static field ( 인스턴스 멤버 )
     - 은행 내부에 접근 가능한 은행 직원과 ( private ) 은행 내부에는 접근을 못하지만 은행 내부에 접근이 가능한 직원과 창구에서 거래를 하는 사용자 ( public )
 
 ```JAVA
-    class Test{
-        private func();
+class Test{
+    private func();
 
-        public ins_func();
+    public ins_func();
 
-        public control_func(){
-            func();
-        }
+    public control_func(){
+        func();
     }
-    Test ins_test = new Test();
+}
+Test ins_test = new Test();
 ```
 - private
     - 클래스에 외부에서는 접근이 불가능, 클래스를 통해 직접 접근 또는 public 함수를 통해 간접적으로 접근을 해야한다.
     
     ```JAVA
-        Test.func();            // 가능
-        ins_test.func()         // 불가능
-        int_test.control_func() // 가능
+    Test.func();            // 가능
+    ins_test.func()         // 불가능
+    int_test.control_func() // 가능
     ```
 xxxx
 - public
     - 인스턴스 객체를 통해 접근이 가능한 함수
     
     ```JAVA
-        ins_test.func()         // 가능
+    ins_test.func()         // 가능
     ```
 
 ||같은 클래스|같은 패키지|다른 패키지 상속 ( O )|다른 패키지 상속 ( X )|
@@ -479,9 +484,9 @@ xxxx
 - 추상 클래스는 인스턴스 객체 생성을 통해서 사용이 불가능하다. 다른 클래스를 통해 추상 클래스를 상속받아서 사용 해야한다.
 
 ```JAVA
-        abstract class Parent{}
+    abstract class Parent{}
 
-        class Child extends Parent{}
+    class Child extends Parent{}
 ```
  
 ### 추상 메서드
@@ -493,15 +498,15 @@ xxxx
     - 메서드가 abstract 일 경우 클래스는 자동으로 abstract 가 된다.
     
     ```JAVA
-        abstract class Parent{
-            public abstract int ab_test();  // 구체적인 로직이 없고 선언만 한다.
-        }
+    abstract class Parent{
+        public abstract int ab_test();  // 구체적인 로직이 없고 선언만 한다.
+    }
 
-        class Child extends Parent{
-            public int b(){                 // override 를 통해 구체적인 로직 선언
-                return 1;
-            }
+    class Child extends Parent{
+        public int b(){                 // override 를 통해 구체적인 로직 선언
+            return 1;
         }
+    }
     ```
 
 ## 다지인 패턴
@@ -536,47 +541,48 @@ xxxx
 - 클래스 Test 는 Inter 라는 인터페이스를 구현한다.
 
 ```JAVA
-    public interface Inter{     // 클래스 개발 전 클래스 사용 팀과 상의하여 간략한 설계도 제작
-        public void func(int num1, int num2);
-    }
-    
-    class TestDummy(){          // 클래스 사용시 예상 결과물을 하드 코딩하여 리턴
-        public Test_Dummy(int num1, int num2){}
-        return 20;
-    }
+public interface Inter{     // 클래스 개발 전 클래스 사용 팀과 상의하여 간략한 설계도 제작
+    public void func(int num1, int num2);
+}
 
-    class Test implements Inter{    // 미리 논의한 설계도 대로 제작하기 위해 interface 상속
-        public void func(int num1, int num2){
-            return num1 + num2;
-        }; 
-    }
+class TestDummy(){          // 클래스 사용시 예상 결과물을 하드 코딩하여 리턴
+    public Test_Dummy(int num1, int num2){}
+    return 20;
+}
 
-    public void main(){
-        TestDummy DevTeam2 = new TestDummy(5, 15);  // 클래스 개발과정 중 더미 클래스 사용
-        // Test DevTeam2 = new Test(5, 15);         // 클래스 개발 완성 시 변경
-    }
+class Test implements Inter{    // 미리 논의한 설계도 대로 제작하기 위해 interface 상속
+    public void func(int num1, int num2){
+        return num1 + num2;
+    }; 
+}
+
+public void main(){
+    TestDummy DevTeam2 = new TestDummy(5, 15);  // 클래스 개발과정 중 더미 클래스 사용
+    // Test DevTeam2 = new Test(5, 15);         // 클래스 개발 완성 시 변경
+}
 ```
 
 - 인터페이스도 상속이 된다.
 - 기본 JAVA 에서는 불가능한 다중 상속이 된다.
 
 ```JAVA
-    interface I1{
-        public void a();
-    }
-    interface I2 extends I1{
-        public void b();
-    }
-    interface I3{
-        public void c();
-    }
+interface I1{
+    public void a();
+}
 
-    class Test implements I2, I3 {
-        public void a(){}
-        public void b(){}
-        public void c(){}
+interface I2 extends I1{
+    public void b();
+}
 
-    }
+interface I3{
+    public void c();
+}
+
+class Test implements I2, I3 {
+    public void a(){}
+    public void b(){}
+    public void c(){}
+}
 ```
 
 ### [abstract](abstract) vs interface
@@ -584,12 +590,12 @@ xxxx
 - 추상 클래스 ( [abstract](abstract) ) 는 일반적인 클래스와 같이 내부에 로직을 작성 가능한 함수가 존재하며, 단지 정의를 해주기를 기대 ( 강제 ) 하는 추상 메서드가 동시에 존재 할 뿐이다.
     - 함수와 같이 extends 를 사용, 오직 1개 만 상속 가능
     ```JAVA
-        class Test extends Test2{}
+    class Test extends Test2{}
     ```
 - interface 는 클래스가 아닌 interface 라는 고유한 형태를 가지고 있으며 메서드 내부 로직 작성이 불가능하며 단지 메서드와 매개 변수 선언만 가능하다.
     - 함수와 달리 implements 사용, 다중으로 상속 가능
     ```JAVA
-        class Test implements Test2, Test3{}
+    class Test implements Test2, Test3{}
     ```
 
 ## 다형성
@@ -604,39 +610,39 @@ xxxx
     - 부모 A 클래스에서 상속받아 B 클래스에서 [override](#override) 한 함수는 사용이 가능하다.
     - 우선 순위로는 B 클래스에서 override 한 함수가 더 높다.
 ```JAVA
-    class A{
-        public void x(){System.out.println("A.x()") }
-    }
-    class B extends A{
-        public void x(){System.out.println("B.x()") }
-        public void y(){System.out.println("B.y()") }
+class A{
+    public void x(){System.out.println("A.x()") }
+}
 
-    }
+class B extends A{
+    public void x(){System.out.println("B.x()") }
+    public void y(){System.out.println("B.y()") }
+}
 
-    A test = new B();
-    test.x();           // B.x() 출력
-    test.y();           // 데이터 타입이 A 이기 때문에 B 클래스 내부에 있는 함수 사용 불가 ( Error 처리 )
+A test = new B();
+test.x();           // B.x() 출력
+test.y();           // 데이터 타입이 A 이기 때문에 B 클래스 내부에 있는 함수 사용 불가 ( Error 처리 )
 ```
 
 - [interface](#interface) 다형성
     - interface 인 데이터 타입 변수에 interface 를 구현하는 클래스를 대입 할 수 있다.
     ```JAVA
-        interface Inter{}
+    interface Inter{}
 
-        class Cl implements Inter{}
+    class Cl implements Inter{}
 
-        Inter test = new Cl();
+    Inter test = new Cl();
     ```
 
 - James 라는 사람이 직장에서는 Programmer 가정에서는 Father 동아리에서 Member 라면 interface 를 통해 Programmer, Father, Member 를 상속 받아 온 후 상황에 맞는 데이터 타입을 변수를 생성할 때 유용하다.
 
 ```JAVA
-    interface Father{}
-    interface Programmer{}
-    interface Member{}
-    class James implements Programmer, Father, Member {}
+interface Father{}
+interface Programmer{}
+interface Member{}
+class James implements Programmer, Father, Member {}
 
-    Father FJames = new James();
+Father FJames = new James();
 ```
 
 ## 예외
@@ -650,43 +656,43 @@ xxxx
 - 오류 발생시 프로그램을 멈추는 것이 아닌 catch 문을 실행 후 남아 있는 로직까지 마무리 한 후 종료.
 
 ```JAVA
-    try{
-        System.out.println(12/0);
-    }catch(Exception e){
-        System.out.println("오류 발생 : " + e.GetMessage());
-    }
+try{
+    System.out.println(12/0);
+}catch(Exception e){
+    System.out.println("오류 발생 : " + e.GetMessage());
+}
 ```
 
 - java 에서 기본적으로 제공해주는 Error 발생 시 뒷수습 방법
 
 ```JAVA
-    try{
-        System.out.println(12/0);
-    }catch(Exception e){
-        System.out.println("\n\ne.getMessage()\n"+e.getMessage());
-        System.out.println("\n\ne.toString()\n"+e.toString());
-        System.out.println("\n\ne.printStackTrace()");
-        e.printStackTrace();
+try{
+    System.out.println(12/0);
+}catch(Exception e){
+    System.out.println("\n\ne.getMessage()\n"+e.getMessage());
+    System.out.println("\n\ne.toString()\n"+e.toString());
+    System.out.println("\n\ne.printStackTrace()");
+    e.printStackTrace();
     }
 
-    /*
-    결과 
-    -------------------
-    e.getMessage()
-    / by zero
+/*
+결과 
+-------------------
+e.getMessage()
+/ by zero
 
 
-    e.toString()
-    java.lang.ArithmeticException: / by zero
+e.toString()
+java.lang.ArithmeticException: / by zero
 
 
-    e.printStackTrace()
-    java.lang.ArithmeticException: / by zero
-    at MyApp.main(MyApp.java:4)
+e.printStackTrace()
+java.lang.ArithmeticException: / by zero
+at MyApp.main(MyApp.java:4)
 
-    Process finished with exit code 0
-    -------------------
-    */
+Process finished with exit code 0
+-------------------
+*/
 ```
 
 - 특정 한 Error 처리 및 다중 Error 처리
@@ -694,15 +700,15 @@ xxxx
     - if else 와 같은 로직으로 처리
         - 최하단의 Exception e 가 최상단으로 올 경우 나머지 코드가 실행이 되지 않는다. 
 ```JAVA
-    try{
+try{
 
-    } catch(ArithmeticException e){                 // 0 으로 나누었을 때의 산술 오류
-        System.out.println("ArithmeticException" + e);
-    } catch(ArrayIndexOutOfBoundsException e){      // 배열의 크기를 벗어나는 index 사용시 오류
-        System.out.println("ArrayIndexOutOfBoundsException" + e);
-    } catch(Exception e){                           // 위 두 개 이외의 전부
-        System.out.println("Error" + e);
-    }
+} catch(ArithmeticException e){                 // 0 으로 나누었을 때의 산술 오류
+    System.out.println("ArithmeticException" + e);
+} catch(ArrayIndexOutOfBoundsException e){      // 배열의 크기를 벗어나는 index 사용시 오류
+    System.out.println("ArrayIndexOutOfBoundsException" + e);
+} catch(Exception e){                           // 위 두 개 이외의 전부
+    System.out.println("Error" + e);
+}
 ```
 
 ### finally
@@ -723,75 +729,75 @@ xxxx
 - class B 에서 처리하지 않고 class C 로 책임을 전가
 
 ```JAVA
-    package org.opentutorials.javatutorials.exception;
-    import java.io.*;
+package org.opentutorials.javatutorials.exception;
+import java.io.*;
 
-    class B{
-        void run() throws IOException, FileNotFoundException{
-            BufferedReader bReader = null;
-            String input = null;
-            bReader = new BufferedReader(new FileReader("out.txt"));
-            input = bReader.readLine();
-            System.out.println(input);
+class B{
+    void run() throws IOException, FileNotFoundException{
+        BufferedReader bReader = null;
+        String input = null;
+        bReader = new BufferedReader(new FileReader("out.txt"));
+        input = bReader.readLine();
+        System.out.println(input);
+    }
+}
+
+class C{
+    void run(){
+        B b = new B();
+        try {
+            b.run();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+}
 
-    class C{
-        void run(){
-            B b = new B();
-            try {
-                b.run();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public class ThrowExceptionDemo {
-        public static void main(String[] args) {
-            C c = new C();
-            c.run();
-        }   
-    }
+public class ThrowExceptionDemo {
+    public static void main(String[] args) {
+        C c = new C();
+        c.run();
+    }   
+}
 ```
 
 - class B 에서 class C 로 class C 에서 main 으로 전가
 
 ```JAVA
-    package org.opentutorials.javatutorials.exception;
-    import java.io.*;
+package org.opentutorials.javatutorials.exception;
+import java.io.*;
 
-    class B{
-        void run() throws IOException, FileNotFoundException{
-            BufferedReader bReader = null;
-            String input = null;
-            bReader = new BufferedReader(new FileReader("out.txt"));
-            input = bReader.readLine();
-            System.out.println(input);
+class B{
+    void run() throws IOException, FileNotFoundException{
+        BufferedReader bReader = null;
+        String input = null;
+        bReader = new BufferedReader(new FileReader("out.txt"));
+        input = bReader.readLine();
+        System.out.println(input);
+    }
+}
+
+class C{
+    void run() throws IOException, FileNotFoundException{
+        B b = new B();
+        b.run();
+    }
+}
+
+public class ThrowExceptionDemo {
+    public static void main(String[] args) {
+        C c = new C();
+        try {
+            c.run();
+        } catch (FileNotFoundException e) {
+            System.out.println("out.txt 파일은 설정 파일 입니다. 이 파일이 프로잭트 루트 디렉토리에 존재해야 합니다.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    class C{
-        void run() throws IOException, FileNotFoundException{
-            B b = new B();
-            b.run();
-        }
-    }
-
-    public class ThrowExceptionDemo {
-        public static void main(String[] args) {
-            C c = new C();
-            try {
-                c.run();
-            } catch (FileNotFoundException e) {
-                System.out.println("out.txt 파일은 설정 파일 입니다. 이 파일이 프로잭트 루트 디렉토리에 존재해야 합니다.");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }   
-    }
+    }   
+}
 ```
 
 ### 예외 만들기
@@ -802,23 +808,23 @@ xxxx
     - 입력 값이 들어오는 부분에서 값 확인 후 예외 처리
 
     ```JAVA
-        public void setOprands(int left, int right){
-            if(right == 0){
-                throw new IllegalArgumentException("두번째 인자의 값은 0이 될 수 없습니다.");
-            }
-            this.left = left;
-            this.right = right;
+    public void setOprands(int left, int right){
+        if(right == 0){
+            throw new IllegalArgumentException("두번째 인자의 값은 0이 될 수 없습니다.");
         }
+        this.left = left;
+        this.right = right;
+    }
     ```
 
     - 계산 과정에서 적절치 못한 값인 경우 예외 처리
     
     ```JAVA
-        public void divide(){
-            if(this.right == 0){
-                throw new ArithmeticException("0으로 나누는 것은 허용되지 않습니다.");
-            }
+    public void divide(){
+        if(this.right == 0){
+            throw new ArithmeticException("0으로 나누는 것은 허용되지 않습니다.");
         }
+    }
     ```
 
 - 주요 Exception 리스트
@@ -850,31 +856,31 @@ xxxx
     - 상속을 통한 예외 방법 설정 
 
 ```JAVA
-    class DivideException extends RuntimeException {
-        DivideException(){
-            super();
-        }
-        DivideException(String message){
-            super(message);
-        }
+class DivideException extends RuntimeException {
+    DivideException(){
+        super();
+    }
+    DivideException(String message){
+        super(message);
+    }
+}
+
+
+class Calculator{
+    int left, right;
+
+    public void setOprands(int left, int right){        
+        this.left = left;
+        this.right = right;
     }
 
-
-    class Calculator{
-        int left, right;
-
-        public void setOprands(int left, int right){        
-            this.left = left;
-            this.right = right;
+    public void divide(){
+        if(this.right == 0){
+            throw new DivideException("0으로 나누는 것은 허용되지 않습니다.");
         }
-
-        public void divide(){
-            if(this.right == 0){
-                throw new DivideException("0으로 나누는 것은 허용되지 않습니다.");
-            }
-            System.out.print(this.left/this.right);
-        }
+        System.out.print(this.left/this.right);
     }
+}
 ```
 
 <img src="../PIC/Checked Unchecked Exception.png">
@@ -892,13 +898,13 @@ xxxx
 - 클래스에 포함되어 있지 않은 toString() 함수를 호출 할 수 있는 것 역시 extends Object 를 default 값으로 설정하여 생략하더라도 포함이 되어 있기 때문에
 
 ```JAVA
-    Calculator c1 = new Calculator();
-    System.out.println(c1);
-    System.out.println(c1.toString());
+Calculator c1 = new Calculator();
+System.out.println(c1);
+System.out.println(c1.toString());
 
-    // reslut
-    // org.opentutorials.javatutorials.progenitor.Calculator@11be650f
-    // org.opentutorials.javatutorials.progenitor.Calculator@11be650f
+// reslut
+// org.opentutorials.javatutorials.progenitor.Calculator@11be650f
+// org.opentutorials.javatutorials.progenitor.Calculator@11be650f
 ```
 
 ## equals & ==
@@ -915,23 +921,23 @@ xxxx
 - False
 
 ```JAVA
-    String str1 = "a";
-    String str2 = "a";
+String str1 = "a";
+String str2 = "a";
 
-    String str3 = new String("a");
-    String str4 = new String("a");
+String str3 = new String("a");
+String str4 = new String("a");
 
-    /*
-        True
-        -----
-        str1 == str2
-        str1.equals(str3)
-        str3.equals(str4)
-        
-        False
-        -----
-        str1 == str3
-    */
+/*
+    True
+    -----
+    str1 == str2
+    str1.equals(str3)
+    str3.equals(str4)
+    
+    False
+    -----
+    str1 == str3
+*/
 ```
 
 ## finalize
@@ -954,32 +960,32 @@ xxxx
 - 모든 클래스의 조상은 Object 이다.
 
 ```JAVA
-    class Test implements Clonable{     // clone 가능 하도록 명시
+class Test implements Clonable{     // clone 가능 하도록 명시
 
-        Stirng name;
-        Test(String name){
-            this.name = name;
-        }
-        public Object clone() throws CloneNotSupportedException{    // 상속 후 override
-            return super.clone();                                   // 필수로 작성해야 하는 예외문
-        }                                                           // 한번 더 throw 해줌
+    Stirng name;
+    Test(String name){
+        this.name = name;
     }
+    public Object clone() throws CloneNotSupportedException{    // 상속 후 override
+        return super.clone();                                   // 필수로 작성해야 하는 예외문
+    }                                                           // 한번 더 throw 해줌
+}
 
-    public static void main(String[] args) {
-        Test s1 = new Test("myName");
+public static void main(String[] args) {
+    Test s1 = new Test("myName");
 
-        try {
-            /* clone 의 return 값이 Object 이기 때문에
-             데이터 형식을 Object 로 설정하거나 Test 라 명시 해주어야 한다. */
-            Object t2 = t1.clone();
-            // Test t2 = (Test)t1.clone();
+    try {
+        /* clone 의 return 값이 Object 이기 때문에
+            데이터 형식을 Object 로 설정하거나 Test 라 명시 해주어야 한다. */
+        Object t2 = t1.clone();
+        // Test t2 = (Test)t1.clone();
 
-            System.out.println(t1.name);
-            System.out.println(t2.name);
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        System.out.println(t1.name);
+        System.out.println(t2.name);
+    } catch (CloneNotSupportedException e) {
+        e.printStackTrace();
     }
+}
 ```
 
 ## enum
@@ -988,34 +994,34 @@ xxxx
     - 기존의 상수들은 우항의 값이 같을 경우 같다고 출력하거나 이를 해결 한 경우 코드의 가독성이 너무 떨어지거나 특정 상황에서 사용이 불가능 한 경우가 발생.
 
 ```JAVA
-    /*
-    // 가독석이 안좋고 특정 상황에서 사용이 불가능한 같은 의미의 코드
-        class Fruit{
-            public static final Fruit APPLE = new Fruit();
-            public static final Fruit BANANA = new Fruit();
-        }
-    */  
-
-    enum Fruit{
-        APPLE, BANANA
+/*
+// 가독석이 안좋고 특정 상황에서 사용이 불가능한 같은 의미의 코드
+    class Fruit{
+        public static final Fruit APPLE = new Fruit();
+        public static final Fruit BANANA = new Fruit();
     }
+*/  
 
-    enum Company{
-        GOOGLE, APPLE
+enum Fruit{
+    APPLE, BANANA
+}
+
+enum Company{
+    GOOGLE, APPLE
+}
+
+public static void main(Stirng[] args){
+    Fruit type = Fruit.APPLE;
+
+    switch(type){
+        case APPLE:
+            System.out.println("apple");
+            break;
+        case BANANA:
+            System.out.println("banana");
+            break;
     }
-
-    public static void main(Stirng[] args){
-        Fruit type = Fruit.APPLE;
-
-        switch(type){
-            case APPLE:
-                System.out.println("apple");
-                break;
-            case BANANA:
-                System.out.println("banana");
-                break;
-        }
-    }
+}
 ```
 
 ### enum과 생성자
@@ -1023,51 +1029,51 @@ xxxx
 - 기존에는 열거 할 수 없었던 특성이 가능하게 되어 valuse 함수를 통해 열거까지도 가능하다
 
 ```JAVA
-    enum Fruit{
-        APPLE("red"), BANANA("yellow");
-        
-        public String color;
-        /*
-        // 사용자가 변수에 접근 못하도록 설정도 가능
-            private Stirng color;
-            public String getColor(){
-                return this.color;
-            }
-        */
-
-        Fruit(String color){
-            System.out.println("Call Constructor " + this);
-            this.color = color;
-        }
-    }
-
-    public static void main(Stirng[] args){
-        Fruit type = Fruit.APPLE;
-
-        switch(type){
-            case APPLE:
-                System.out.println("apple" + Fruit.APPLE.getColor);
-                break;
-            case BANANA:
-                System.out.println("banana" + Fruit.BANANA.getColor);
-                break;
-        }
-
-        System.out.println("-------");
-
-        for(Fruit f : Fruit.values()){
-            System.out.println(f);
-        }
-    }
+enum Fruit{
+    APPLE("red"), BANANA("yellow");
     
+    public String color;
     /*
-        Call Constructor APPLE
-        Call Constructor BANANA
-        apple red
-        -------
-        APPLE
-        BANANA
+    // 사용자가 변수에 접근 못하도록 설정도 가능
+        private Stirng color;
+        public String getColor(){
+            return this.color;
+        }
     */
+
+    Fruit(String color){
+        System.out.println("Call Constructor " + this);
+        this.color = color;
+    }
+}
+
+public static void main(Stirng[] args){
+    Fruit type = Fruit.APPLE;
+
+    switch(type){
+        case APPLE:
+            System.out.println("apple" + Fruit.APPLE.getColor);
+            break;
+        case BANANA:
+            System.out.println("banana" + Fruit.BANANA.getColor);
+            break;
+    }
+
+    System.out.println("-------");
+
+    for(Fruit f : Fruit.values()){
+        System.out.println(f);
+    }
+}
+
+/*
+    Call Constructor APPLE
+    Call Constructor BANANA
+    apple red
+    -------
+    APPLE
+    BANANA
+*/
 ```
 
 ## 복제
@@ -1076,11 +1082,34 @@ xxxx
 - 다른 곳에 있던 데이터의 값을 복사해서 저장하는 것이기 때문에 내가 가진 값을 다른 값으로 다시 바꾸어도 원래 있던 곳의 데이터에는 아무 변화가 없다.
 
 ```JAVA
-    int a = 1;
-    int b = a;  // b = 1
-    int b = 2;  // a = 1, b = 2
+int a = 1;
+int b = a;  // b = 1
+int b = 2;  // a = 1, b = 2
 ```
 
 ## 참조 ( reference )
 
 - [기본 데이터 타입](./JAVA%20%EA%B8%B0%EB%B3%B8%20%EB%AC%B8%EB%B2%95.md#JAVA-기본-문법)
+- 데이터 타입을 생성할 떄에 new 를 통해서 생성하는 것들은 기본 데이터 타입이 아닌 **참조형 데이터** 타입이라 부른다.
+    - 기본 데이터 타입은 복제, 참조형 데이터 타입은 참조를 하기 때문에 참조 해온 데이터의 값을 바꾸면 오리지널 데이터 역시도 변경이 된다.
+    - **복제** : 메모리 내의 데이터를 복사해서 나의 것을 갖는 것
+    - **참조** : 데이터가 저장 된 위치의 메모리 주소만 건내 받는 것 ( 다른 인스턴스의 데이터에 접근 가능 )
+
+## 제네릭
+
+- 클래스 내부에서 사용할 데이터 타입을 나중에 인스턴스를 사용할 때 확정하는 기법.
+- 같은 기능을 제공하는 다른 데이터 타입의 코드를 통합 할 때에 Object 와 같은 데이터 타입을 사용하지 않아 데이터 타입이 안전하다는 장점과 중복된 코드를 제거하여 편의성을 높여주는 기법.
+
+
+```JAVA
+class Person<T>{
+    public T info;
+}
+
+public class GenericDemo {
+    public static void main(String[] args) {
+        Person<String> p1 = new Person<String>();
+        Person<StringBuilder> p2 = new Person<StringBuilder>();
+    }
+}
+```

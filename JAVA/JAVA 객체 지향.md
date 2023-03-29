@@ -485,8 +485,11 @@ xxxx
 
 ```JAVA
     abstract class Parent{}
-
+    
     class Child extends Parent{}
+
+    Parent test1 = new Parent();     // 추상 클래스 직접 사용 불가
+    Child test2 = new Child();       // 상속 받아서 샤용 해야함
 ```
  
 ### 추상 메서드
@@ -503,13 +506,13 @@ xxxx
     }
 
     class Child extends Parent{
-        public int b(){                 // override 를 통해 구체적인 로직 선언
+        public int ab_test(){           // override 를 통해 구체적인 로직 선언
             return 1;
         }
     }
     ```
 
-## 다지인 패턴
+## 디자인 패턴
 
 - 프로그래밍을 어떻게 만들 것인지에 대한 **디자인**과 반복적인 것을 의미하는 **패턴** 을 의미한다.
 - 프로그래밍이 창의적인 활동이긴 하지만 비슷한 카테고리의 객체라면 내부의 로직의 전개 방법과 구성에서 일정한 패턴이 존재 하는데 이에 대해 정리를 해둔 것.
@@ -585,9 +588,9 @@ class Test implements I2, I3 {
 }
 ```
 
-### [abstract](abstract) vs interface
+### [abstract](#abstract) vs interface
 
-- 추상 클래스 ( [abstract](abstract) ) 는 일반적인 클래스와 같이 내부에 로직을 작성 가능한 함수가 존재하며, 단지 정의를 해주기를 기대 ( 강제 ) 하는 추상 메서드가 동시에 존재 할 뿐이다.
+- 추상 클래스 ( [abstract](#abstract) ) 는 일반적인 클래스와 같이 내부에 로직을 작성 가능한 함수가 존재하며, 단지 정의를 해주기를 기대 ( 강제 ) 하는 추상 메서드가 동시에 존재 할 뿐이다.
     - 함수와 같이 extends 를 사용, 오직 1개 만 상속 가능
     ```JAVA
     class Test extends Test2{}
@@ -1100,6 +1103,12 @@ int b = 2;  // a = 1, b = 2
 - 클래스 내부에서 사용할 데이터 타입을 나중에 인스턴스를 사용할 때 확정하는 기법.
 - 같은 기능을 제공하는 다른 데이터 타입의 코드를 통합 할 때에 Object 와 같은 데이터 타입을 사용하지 않아 데이터 타입이 안전하다는 장점과 중복된 코드를 제거하여 편의성을 높여주는 기법.
 
+- 제네릭 <> 안에는 기본데이터 타입은 들어올 수 없다. 오직 참조형 데이터 타입만 올 수 있다.
+    - 기본 데이터 타입을 사용하려면 wrapper 클래스를 통해서 기본 데이터 타입을 객체로 포장해서 사용해 주어야 한다.
+        - int => Integer
+        double => Double
+        Integer id = new Integer(1);
+        
 
 ```JAVA
 class Person<T>{
@@ -1112,4 +1121,60 @@ public class GenericDemo {
         Person<StringBuilder> p2 = new Person<StringBuilder>();
     }
 }
+```
+
+### 제네릭의 생략
+
+```JAVA
+class Person<T, S>{
+    public T info;
+    public S id;
+    Person(T info, S id){ 
+        this.info = info;
+        this.id = id;
+    }
+
+    // class 뿐만 아니라 method 에도 제네릭이 사용 가능하다
+    public <U> void printInfo(U info){
+        System.out.println(info);
+    }
+}
+
+public static void main(String[] args) {
+    EmployeeInfo e = new EmployeeInfo(1);
+    Integer i = new Integer(10);
+
+    //T 와 S 의 매개변수의 데이터 타입이 EmplyeeInfo, Integer 라는 것을 명시적으로 알 수 있기 때문에 생략이 가능하다
+    Person<EmployeeInfo, Integer> p1 = new Person<EmployeeInfo, Integer>(e, i);
+    Person p1 = new Person(e, i);
+
+    // method 역시 명시적으로 데이터 타입을 알 수 있기에 생략이 가능하다
+    p1.<EmployeeInfo>printInfo(e);
+    p1.printInfo(e);
+}
+```
+
+### 제네릭 데이터 타입 강제하기
+
+- 지정한 데이터 타입 또는 그 자식들만 들어 올 수 있게 미리 선언
+
+```JAVA
+abstract class Parent{
+    public abstract int ab_method();
+}
+
+class Child extends Parent{
+    public int ab_method(){}
+}
+
+class Person<T extends Parent>{}    // Parent 데이터 타입과 그 자식 데이터 타입만 들어 올 수 있도록 선언 
+    // extends는 상속의 개념이 아닌 부모가 누구인지 나타낸다 interface 를 사용 하더라도 implements 사용 x
+
+public class GenericDemo {
+    public static void main(Stirng[] arges) {
+        Person<Child> p1 = new Person<Child>(new Child());
+        Person<String> P2 = new Person<String>("gogo");
+    }
+}
+
 ```

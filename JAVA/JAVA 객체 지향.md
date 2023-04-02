@@ -44,6 +44,9 @@
 - [복제](#복제)
 - [참조 ( reference )](#참조-(-reference-))
 - [제네릭](#제네릭)
+- [Collections Framework](#Collections-Framework)
+- [ArrayList](#ArrayList)
+- [HashSet](#HashSet)
 
 ---
 
@@ -1167,8 +1170,12 @@ class Child extends Parent{
     public int ab_method(){}
 }
 
+class Person<T>{}
+class Person<T extends Object>{}    // Object 의 자식이면 누구나 된다는 것을 생략
+
 class Person<T extends Parent>{}    // Parent 데이터 타입과 그 자식 데이터 타입만 들어 올 수 있도록 선언 
     // extends는 상속의 개념이 아닌 부모가 누구인지 나타낸다 interface 를 사용 하더라도 implements 사용 x
+
 
 public class GenericDemo {
     public static void main(Stirng[] arges) {
@@ -1176,5 +1183,56 @@ public class GenericDemo {
         Person<String> P2 = new Person<String>("gogo");
     }
 }
-
 ```
+
+## Collections Framework
+
+- Collections Famework 란 Collection 과 Map 이라는 최상위 카테고리가 있고 그 카테고리 내에는 성겨과 기능에 따라 또 다시 분류가 되어있다.
+<img src="../PIC/Collections Famework.png">
+
+### ArrayList
+
+- 배열: 연관되어 있는 데이터를 그룹잉 해서 편리하게 다를 수 있는 수단
+- 배열이 가지고 있는 불편함과 한계를 쉽게 벗어날 수 있도록 하는 도구
+- 배열의 특징 중 선언한 데이터의 개수를 넘어갈 경우 발생하는 index 오류를 피할 수 있다
+    - ArrayList 를 사용하면 배열을 선언시 몇 개 인지를 선언하지 않아도 되는 장점이 있다
+
+```JAVA
+import java.util.ArrayList;     // ArrayList 패키지를 호출
+
+String[] array1 = new String[2];
+array1[0] = "ONE";
+System.out.println(array1[0]);
+
+ArrayList array2 = new ArrayList();
+array2.add("ONE");
+System.out.println(array2.get(0));
+```
+
+- ArrayList 의 인자를 추가하는 add 메서드의 파라미터는 Object 이다.
+    - get 메서드를 통해 꺼내온 인자를 변수에 담을 때에 형변환을 시켜 주어야 한다.
+    - 형변환을 시키는 경우에는 타입의 안정성이 떨어짐으로 [제네릭](#제네릭) 을 통해 데이터 타입을 강제 해 줄 수 있다.
+
+```JAVA
+import java.util.ArrayList;     // ArrayList 패키지를 호출
+
+ArrayList array1 = new ArrayList();
+array1.add("ONE");
+
+// String 변수에 Object 타입을 넣기에 오류 발생
+String value = array1.get(0);
+// 형변환에 의해 오류는 없지만 타입의 안정성이 떨어짐
+String value = (String)array1.get(0);
+
+--------------------------------------------------------
+
+// 제네릭을 통해 안정성을 높임
+ArrayList<String> array2 = new ArrayList<String>();
+array2.add("ONE");
+// 오류도 없고 안정성도 높음
+String value = array2.get(0);
+```
+
+### HashSet
+
+- 

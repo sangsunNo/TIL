@@ -47,7 +47,7 @@
 - [Collections Framework](#Collections-Framework)
 - [ArrayList](#ArrayList)
 - [HashSet](#HashSet)
-
+- [Iterator](#Iterator)
 ---
 
 
@@ -1196,6 +1196,7 @@ public class GenericDemo {
 - 배열이 가지고 있는 불편함과 한계를 쉽게 벗어날 수 있도록 하는 도구
 - 배열의 특징 중 선언한 데이터의 개수를 넘어갈 경우 발생하는 index 오류를 피할 수 있다
     - ArrayList 를 사용하면 배열을 선언시 몇 개 인지를 선언하지 않아도 되는 장점이 있다
+- 리스트에 있는 값들은 순서대로 저장이 된다. Set은 순서가 보장되지 않는다.
 
 ```JAVA
 import java.util.ArrayList;     // ArrayList 패키지를 호출
@@ -1235,4 +1236,59 @@ String value = array2.get(0);
 
 ### HashSet
 
-- 
+- Set 은 List 나 Array 와는 다르게 변수 내에 중복된 데이터 값이 저장 될 수 없다.
+- 리스트에 있는 값들은 순서대로 저장이 된다. Set은 순서가 보장되지 않는다.
+
+```JAVA
+import java.util.HashSet;       // ArrayList 패키지를 호출
+import java.utill.Iterator;     // 반복을 도와주는 패키지 호출
+
+HashSet<Integer> A = new HashSet<Integer>();
+A.add(1);
+A.add(2);
+A.add(3);
+
+HashSet<Integer> B = new HashSet<Integer>();
+B.add(3);
+B.add(4);
+B.add(5);
+
+HashSet<Integer> C = new HashSet<Integer>();
+C.add(1);
+C.add(2);
+
+System.out.println(A.containsAll(B))    // false B는 A의 부분집합인가
+System.out.println(A.containsAll(C))    // true C는 A의 부분집합인가
+
+// Iterator 패키지를 통해 하나하나 꺼내는 반복 동작을 수행
+A.addAll(B);    // A에 B가 가진 원소를 모두 더하라 = 합집합
+A.retainAll(B); // A와 B 모두 가진 원소만 남긴다 = 교집합
+A.removeAll(B); // A에서 B와 중복되는 원소를 모두 지운다 = 차집합
+```
+
+### Iterator
+
+- Collection 인터페이스를 구현하는 클래스들이 공통적으로 가지고 있다. list set  모두에서 사용이 가능
+- 컨테이너에 담겨있는 값들을 하나하나 꺼내주는 역할의 인터페이스
+- iterator 메서드를 통해 생성된 변수의 값들은 원본 데이터의 참조 값만 가지고 있기에 원본과는 아무 상관이 없다
+- Iterator 인터페이스 내 함수
+    - hasNext()
+        변수 내 다음 값이 있는지 참/거짓을 알려줌
+    - next()
+        변수 내 다음 값을 꺼내준다. 꺼낸 후에는 컨테이너의 값은 사라지게 되는데 앞서 말했든 원본 데이터의 참조 값이기 때문에 원본에는 아무 영향이 가지 않는다
+
+```JAVA
+import java.util.HashSet;       // ArrayList 패키지를 호출
+import java.utill.Iterator;     // 반복을 도와주는 패키지 호출
+
+HashSet<Integer> A = new HashSet<Integer>();
+A.add(1);
+A.add(2);
+A.add(3);
+
+Iterator hi = A.iterator();
+while(hi.hasNext()){
+    System.out.println(hi.next());
+}
+```
+

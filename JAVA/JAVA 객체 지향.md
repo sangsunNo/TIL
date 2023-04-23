@@ -48,6 +48,9 @@
 - [ArrayList](#ArrayList)
 - [HashSet](#HashSet)
 - [Iterator](#Iterator)
+- [Map](#Map)
+- [HashMap](#HashMap)
+- [List-정렬](#List-정렬)
 ---
 
 
@@ -1292,3 +1295,123 @@ while(hi.hasNext()){
 }
 ```
 
+### Map
+
+- key 값과 value 값을 서로 매칭시켜 두어 key 를 호출 시 value 값을 리턴해준다.
+- key 값은 중복이 될 수 없다, value의 값은 중복이 존재 할 수 있다.
+
+### HashMap
+
+- Map 의 저장되는 값은 key, value 두 가지 이기 때문에 제네릭 선언시 두 개 필요.
+- put 메서드는 collection 인터페이스에는 존재하지 않고 Map 인터페이스에만 존재한다.
+    - key, value 두 개의 인자를 받는다.
+- get 메서드 인자를 통해 키 값을 넘겨주면 value 값을 리턴해준다.
+- Map.Entry 인터페이스에는 getKey(), getValue() 메서드가 있는데 이는 key 와 value 를 리턴해준다.
+
+```JAVA
+package org.opentutorials.javatutorials.collection;
+ 
+import java.util.*;
+
+// key, value 제네릭 선언시 두 개 필요
+HashMap<String, Integer> a = new HashMap<String, Integer>();
+
+a.put("one", 1);
+a.put("two", 2);
+a.put("three", 3);
+a.put("four", 4);
+System.out.println(a.get("one"));
+System.out.println(a.get("two"));
+System.out.println(a.get("three"));
+    
+iteratorUsingForEach(a);
+ teratorUsingIterator(a);
+
+/* 
+- Map 데이터 타입의 반복문 함수가 없기에 key 와 value 가 한 쌍인 데이터 타입인 Map.Entry 을 Set 데이터에 저장하여 for 문을 통해 출력해주는 방법
+
+1. HashMap 데이터 타입의 변수인 map
+2. map 변수에 entrySet() 함수를 통해 나온 리턴 값을 Set 데이터 타입인 entries 변수에 저장
+3. Set 데이터 타입 내의 값들은 또 Map.Entry 의 데이터 타입을 가지는 데이터
+Ex) List 안에 int 만 담을거야, List 안에 List 만 담을 거야
+Set 안에 Map.Entry 만 담을거야 를 선언해준 것 Map.Entry 는 key 와 value 를 갖는데 이 데이터 역시 제네릭을 통해 String 과 Integer 인 것 Set<Map.Entry<Stirng, Integer>>
+4. Set 데이터 타입인 entries 변수를 반복문을 통해 하나씩 꺼내어 Map.Entry 타입인 entry 변수에 담고 getKey(), getValue() 함수를 통해 key 와 value 를 출력
+*/
+
+static void iteratorUsingForEach(HashMap map){
+        Set<Map.Entry<String, Integer>> entries = map.entrySet();
+        for (Map.Entry<String, Integer> entry : entries) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
+    }
+
+/*
+위와 같은 방법이지만 for 문이 아닌 Set 의 iterator를 통해 반복해줌
+*/
+     
+static void iteratorUsingIterator(HashMap map){
+    Set<Map.Entry<String, Integer>> entries = map.entrySet();
+    Iterator<Map.Entry<String, Integer>> i = entries.iterator();
+    while(i.hasNext()){
+        Map.Entry<String, Integer> entry = i.next();
+        System.out.println(entry.getKey()+" : "+entry.getValue());
+    }
+}
+```
+
+### List 정렬
+
+- 패키지 java.util 내의 Collections 클래스를 통해 정렬
+- Collections.sort() 함수를 사용하기 위해서 Comparable interface 를 불러와야한다.
+    - Comparable 에는 compareTo 함수가 선언만 되어 있음으로 비교 대상의 코드를 짜서 함수를 완성 시켜주어야한다.
+
+```JAVA
+package org.opentutorials.javatutorials.collection;
+ 
+import java.util.*;
+
+/* 
+1. Coleecitons.sort() 함수를 통해 정렬을 하기 위해서 implements 를 통해 Comparable 라는 interface 를 불러와야 한다.
+2. implements Comparable 에는 compareTo 라는 함수가 선언만 되어 있음으로 비교 대상의 코드를 짜서 함수를 완성 시켜주어야한다.
+3. compareTo 코드를 통해 데이터 추가시 비교를 통해 자동 정렬해준다.
+*/
+
+class Computer implements Comparable{
+    int serial;
+    String owner;
+
+    Computer(int serial, String owner){
+        this.serial = serial;
+        this.owner = owner;
+    }
+
+    public int compareTo(Object o) {
+        return this.serial - ((Computer)o).serial;
+    }
+    
+    public String toString(){
+        return serial+" "+owner;
+    }
+}
+
+List<Computer> computers = new ArrayList<Computer>();
+
+computers.add(new Computer(500, "egoing"));
+computers.add(new Computer(200, "leezche"));
+computers.add(new Computer(3233, "graphittie"));
+
+Iterator i = computers.iterator();
+System.out.println("before");
+
+while(i.hasNext()){
+    System.out.println(i.next());
+}
+
+Collections.sort(computers);
+System.out.println("\nafter");
+
+i = computers.iterator();
+while(i.hasNext()){
+    System.out.println(i.next());
+}
+```

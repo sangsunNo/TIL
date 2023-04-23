@@ -1336,7 +1336,8 @@ iteratorUsingForEach(a);
 Ex) List 안에 int 만 담을거야, List 안에 List 만 담을 거야
 Set 안에 Map.Entry 만 담을거야 를 선언해준 것 Map.Entry 는 key 와 value 를 갖는데 이 데이터 역시 제네릭을 통해 String 과 Integer 인 것
 Set<Map.Entry<Stirng, Integer>>
-4. Set 데이터 타입인 entries 변수를 반복문을 통해 하나씩 꺼내 Map.Entry 타입인 entry 변수에 담고 getKey(), getValue() 함수로 key 와 value 를 출력
+4. Set 데이터 타입인 entries 변수를 반복문을 통해 하나씩 꺼내 Map.Entry 타입인 entry 변수에 담고 
+getKey(), getValue() 함수를 통해 key 와 value 를 출력
 */
 
 static void iteratorUsingForEach(HashMap map){

@@ -11,8 +11,8 @@
 - [클래스 멤버 인스턴스 멤버 그리고 static, dynamic](#클래스-멤버-인스턴스-멤버-그리고-static-dynamic)
 - [클래스 함수 ( 클래스 메서드 )](#클래스-함수--클래스-메서드-)
 - [static field, non static field](#static-field-non-static-field)
-- [유효범위 ( Scope )](#유효범위-(-scope-))
-- [생성자 ( Constructor )](#생성자-(-constructor-))
+- [유효범위 ( Scope )](#유효범위--scope-)
+- [생성자 ( Constructor )](#생성자--constructor-)
 - [상속](#상속)
 - [생성자](#생성자)
 - [super](#super)
@@ -37,12 +37,12 @@
 - [checked & unchecked Exception](#checked-&-unchecked-Exception)
 - [object](#object)
 - [finalize](#finalize)
-- [가비지 컬렉션 ( garbage collection )](#가비지-컬렉션-(-garbage-collection-))
+- [가비지 컬렉션 ( garbage collection )](#가비지-컬렉션--garbage-collection-)
 - [clone](#clone)
 - [enum](#enum)
 - [enum과 생성자](#enum과-생성자)
 - [복제](#복제)
-- [참조 ( reference )](#참조-(-reference-))
+- [참조 ( reference )](#참조--reference-)
 - [제네릭](#제네릭)
 - [Collections Framework](#Collections-Framework)
 - [ArrayList](#ArrayList)
@@ -220,7 +220,7 @@ Calculator.sum(10, 20);
 
 A = static field ( 클래스 멤버 )  
 B = non static field ( 인스턴스 멤버 )
-<img src="../PIC/JAVA기초/부분집합.png">
+<img src="../../PIC/JAVA 기초/부분집합.png">
 
 
 ## 유효범위 ( Scope )
@@ -892,7 +892,7 @@ class Calculator{
 }
 ```
 
-<img src="../PIC/JAVA 기초/Checked Unchecked Exception.png">
+<img src="../../PIC/JAVA 기초/Checked Unchecked Exception.png">
 
 ## object
 
@@ -1191,7 +1191,7 @@ public class GenericDemo {
 ## Collections Framework
 
 - Collections Famework 란 Collection 과 Map 이라는 최상위 카테고리가 있고 그 카테고리 내에는 성겨과 기능에 따라 또 다시 분류가 되어있다.
-<img src="../PIC/Collections Famework.png">
+<img src="../../PIC/JAVA 기초/Collections Famework.png">
 
 ### ArrayList
 

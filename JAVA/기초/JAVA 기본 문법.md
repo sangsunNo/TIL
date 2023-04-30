@@ -66,7 +66,7 @@
 
 ## 연산자 우선순위
 
-<img src="../PIC/JAVA 연산자 우선순위.png">
+<img src="../../PIC/JAVA 기본/JAVA 연산자 우선순위.png">
 
 ## 비교와 Bollean
 

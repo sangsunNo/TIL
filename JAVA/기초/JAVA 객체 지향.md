@@ -9,7 +9,7 @@
 - [클래스와 인스턴스 그리고 객체](#클래스와-인스턴스-그리고-객체)
 - [this](#this)
 - [클래스 멤버 인스턴스 멤버 그리고 static, dynamic](#클래스-멤버-인스턴스-멤버-그리고-static-dynamic)
-- [클래스 함수 ( 클래스 메서드 )](#클래스-함수-(-클래스-메서드-))
+- [클래스 함수 ( 클래스 메서드 )](#클래스-함수--(-클래스-메서드--))
 - [static field, non static field](#static-field-non-static-field)
 - [유효범위 ( Scope )](#유효범위-(-scope-))
 - [생성자 ( Constructor )](#생성자-(-constructor-))

@@ -220,7 +220,7 @@ Calculator.sum(10, 20);
 
 A = static field ( 클래스 멤버 )  
 B = non static field ( 인스턴스 멤버 )
-<img src="../PIC/JAVA 기초/부분집합.png">
+<img src="../PIC/JAVA  기초/부분집합.png">
 
 
 ## 유효범위 ( Scope )

@@ -44,6 +44,7 @@
 - [복제](#복제)
 - [참조 ( reference )](#참조--reference-)
 - [제네릭](#제네릭)
+- [제네릭의-생략](#제네릭의-생략)
 - [Collections Framework](#Collections-Framework)
 - [ArrayList](#ArrayList)
 - [HashSet](#HashSet)

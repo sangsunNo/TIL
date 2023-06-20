@@ -28,6 +28,7 @@
 - [abstract](#abstract)
 - [다지인 패턴](#다지인-패턴)
 - [interface](#interface)
+- [abstract vs interface](#abstract-vs-interface)
 - [다형성](#다형성)
 - [예외](#예외)
 - [finally](#finally)
@@ -483,8 +484,9 @@ xxxx
 ## abstract
 
 - 다양한 맥락에서 공통되는 부분이 있지만 각 각의 다른 부분이 존재 할 때에 사용.
-- abstract 로 지정되어 있는 메소드나 클래스는 직접적으로 사용이 불가능 하고 반드시 상속하는 클래스를 만들어서 상속 
-받은 클래스를 사용하도록 강제한다.
+- 추상 메서드는 일반 변수, 생성자, 일반 메서드, 추상 메서드 모두를 가질 수 있지만 인터페이스는 상수와 추상 메서드만 가질 수 있다.
+- abstract 로 지정되어 있는 메소드나 클래스는 new를 통해 직접적으로 사용이 불가능 하고 반드시 상속하는 클래스를 만들어서 상속 받은 클래스를 통해 사용되도록 강제한다.
+- 추상 메서드가 없는 추상 클래스는 가능 하지만 추상 메서드가 있는 경우에는 추상 클래여야만 한다.
 
 ### 추상 클래스
 
@@ -534,6 +536,7 @@ xxxx
 ## interface
 
 - 어떤 클래스가 있고 그 클래스가 특정 interface 를 사용한다면 그 객체는 반드시 interface 의 메소드를 구현해야 한다. 만약 interface 가 강제하고 있는 메소드를 구현하지 않으면 이 소스코드는 컴파일 조차 되지 않는다.
+- 추상 메서드는 일반 변수, 생성자, 일반 메서드, 추상 메서드 모두를 가질 수 있지만 인터페이스는 상수와 추상 메서드만 가질 수 있다.
 - 특정 클래스와 interface 를 결합 할 때에 interface 내 메서드의 구현을 강제한다.
 - 하나의 클래스는 복수 개의 interface 를 구현 할 수 있다. JAVA 의 자식이 오직 한 명의 부모만 상속 받는 것과의 차이점.
 - interface 의 멤버는 public 이다.
@@ -595,14 +598,14 @@ class Test implements I2, I3 {
 }
 ```
 
-### [abstract](#abstract) vs interface
+### [abstract](#abstract) vs [interface](#interface)
 
 - 추상 클래스 ( [abstract](#abstract) ) 는 일반적인 클래스와 같이 내부에 로직을 작성 가능한 함수가 존재하며, 단지 정의를 해주기를 기대 ( 강제 ) 하는 추상 메서드가 동시에 존재 할 뿐이다.
     - 함수와 같이 extends 를 사용, 오직 1개 만 상속 가능
     ```JAVA
     class Test extends Test2{}
     ```
-- interface 는 클래스가 아닌 interface 라는 고유한 형태를 가지고 있으며 메서드 내부 로직 작성이 불가능하며 단지 메서드와 매개 변수 선언만 가능하다.
+- [interface](#interface) 는 클래스가 아닌 interface 라는 고유한 형태를 가지고 있으며 메서드 내부 로직 작성이 불가능하며 단지 메서드와 매개 변수 선언만 가능하다.
     - 함수와 달리 implements 사용, 다중으로 상속 가능
     ```JAVA
     class Test implements Test2, Test3{}

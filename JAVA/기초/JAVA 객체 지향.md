@@ -26,7 +26,8 @@
 - [접근 제어자](#접근-제어자)
 - [클래스 접근제어자](#클래스-접근제어자)
 - [abstract](#abstract)
-- [다지인 패턴](#다지인-패턴)
+- [다지인 패턴](#디자인-패턴)
+- [final](#final)
 - [interface](#interface)
 - [abstract vs interface](#abstract-vs-interface)
 - [다형성](#다형성)
@@ -326,12 +327,12 @@ public class TestClass {
 ```JAVA
 class ChildTest extends ParentTest {
     public ChildTest(int left, int right) {
-        super(left, right);                     // 상위, 하위 클래스 생성자 역할 이 같은 경우 상위 클래스에서 상송
+        super(left, right);                     // 상위, 하위 클래스 생성자 역할 이 같은 경우 상위 클래스에서 상속
         this.child_blabla = left + right;       // 하위 클래스에서 추가로 덧붙일 내용은 super 하단에 작성
     }
 }
 ```
-ㅐ## override
+## override
 
 - 기존의 상속에서는 부모의 기능에 자식의 기능을 추가하여 사용을 하였지만 override 는 부모에게 받아온 기능을 수정해서 사용하는 것
 - over ride = 덮어 쓰기
@@ -455,7 +456,7 @@ Test ins_test = new Test();
     ins_test.func()         // 불가능
     int_test.control_func() // 가능
     ```
-xxxx
+
 - public
     - 인스턴스 객체를 통해 접근이 가능한 함수
     
@@ -468,7 +469,7 @@ xxxx
 |public|O|O|O|O|
 |protected|O|O|O|X|
 |defalut|O|O|X|X|
-|private|a|O|X|X|X|
+|private|O|X|X|X|X|
 
  ## 클래스 접근제어자
 

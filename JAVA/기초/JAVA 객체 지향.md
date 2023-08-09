@@ -1009,7 +1009,7 @@ public static void main(String[] args) {
 
 ```JAVA
 /*
-// 가독석이 안좋고 특정 상황에서 사용이 불가능한 같은 의미의 코드
+// 가독성이 안좋고 특정 상황에서 사용이 불가능한 같은 의미의 코드
     class Fruit{
         public static final Fruit APPLE = new Fruit();
         public static final Fruit BANANA = new Fruit();
@@ -1043,47 +1043,51 @@ public static void main(Stirng[] args){
 - 기존에는 열거 할 수 없었던 특성이 가능하게 되어 valuse 함수를 통해 열거까지도 가능하다
 
 ```JAVA
-enum Fruit{
-    APPLE("red"), BANANA("yellow");
+public class main {
+    enum Fruit{
+        APPLE("red"),
+        BANANA("yellow");
+
+    // public String color;
     
-    public String color;
-    /*
     // 사용자가 변수에 접근 못하도록 설정도 가능
-        private Stirng color;
+        private String color;
         public String getColor(){
             return this.color;
         }
-    */
 
-    Fruit(String color){
-        System.out.println("Call Constructor " + this);
-        this.color = color;
+        Fruit(String color){
+            System.out.println("Call Constructor " + this);
+            this.color = color;
+        }
     }
+
+    public static void main(String[] args){
+        Fruit type = Fruit.APPLE;
+
+        switch(type){
+            case APPLE:
+                System.out.println("apple is " + Fruit.APPLE.getColor());
+                break;
+            case BANANA:
+                System.out.println("banana is " + Fruit.BANANA.getColor());
+                break;
+        }
+
+        System.out.println("-------");
+
+        for(Fruit f : Fruit.values()){
+            System.out.println(f);
+        }
+    }
+
 }
 
-public static void main(Stirng[] args){
-    Fruit type = Fruit.APPLE;
-
-    switch(type){
-        case APPLE:
-            System.out.println("apple" + Fruit.APPLE.getColor);
-            break;
-        case BANANA:
-            System.out.println("banana" + Fruit.BANANA.getColor);
-            break;
-    }
-
-    System.out.println("-------");
-
-    for(Fruit f : Fruit.values()){
-        System.out.println(f);
-    }
-}
 
 /*
     Call Constructor APPLE
     Call Constructor BANANA
-    apple red
+    apple is red
     -------
     APPLE
     BANANA

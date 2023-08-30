@@ -1,7 +1,7 @@
 ## Index
 ---
 
-- [추상화](#추상화--abstract)
+- [추상화 ( Abstract )](#추상화--abstract)
 - [부품화](#부품화)
 - [은닉화, 캡슐화](#은닉화-캡슐화)
 - [인터페이스](#인터페이스)
@@ -464,7 +464,7 @@ Test ins_test = new Test();
     ins_test.func()         // 가능
     ```
 
-||같은 클래스|같은 패키지|다른 패키지 상속 ( O )|다른 패키지 상속 ( X )|
+||같은 클래스|같은 패키지|다른 패키지에서 상속|전체|
 |:--:|:--:|:--:|:--:|:--:|
 |public|O|O|O|O|
 |protected|O|O|O|X|
@@ -1095,7 +1095,6 @@ public class main {
 ```
 
 ## 복제
-
 - 데이터의 값을 복사한다.
 - 다른 곳에 있던 데이터의 값을 복사해서 저장하는 것이기 때문에 내가 가진 값을 다른 값으로 다시 바꾸어도 원래 있던 곳의 데이터에는 아무 변화가 없다.
 
@@ -1206,7 +1205,7 @@ public class GenericDemo {
 
 - 배열: 연관되어 있는 데이터를 그룹잉 해서 편리하게 다를 수 있는 수단
 - 배열이 가지고 있는 불편함과 한계를 쉽게 벗어날 수 있도록 하는 도구
-- 배열의 특징 중 선언한 데이터의 개수를 넘어갈 경우 발생하는 index 오류를 피할 수 있다
+- 배열의 특징 중 선언한 데이터의 개수를 넘어갈 경우 발생피할 수 있다
     - ArrayList 를 사용하면 배열을 선언시 몇 개 인지를 선언하지 않아도 되는 장점이 있다
 - 리스트에 있는 값들은 순서대로 저장이 된다. Set은 순서가 보장되지 않는다.
 
@@ -1401,7 +1400,7 @@ class Computer implements Comparable{
     }
     
     public String toString(){
-        return serial+" "+owner;
+        return serial + " " + owner;
     }
 }
 
@@ -1426,3 +1425,5 @@ while(i.hasNext()){
     System.out.println(i.next());
 }
 ```
+
+i cake go cake no cake gogo

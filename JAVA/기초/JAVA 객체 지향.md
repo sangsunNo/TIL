@@ -512,11 +512,13 @@ Test ins_test = new Test();
     
     ```JAVA
     abstract class Parent{
-        public abstract int ab_test();  // 구체적인 로직이 없고 선언만 한다.
+        // 구체적인 로직이 없고 선언만 한다.
+        public abstract int ab_test();
     }
 
     class Child extends Parent{
-        public int ab_test(){           // override 를 통해 구체적인 로직 선언
+        // override 를 통해 구체적인 로직 선언
+        public int ab_test(){
             return 1;
         }
     }
@@ -529,7 +531,7 @@ Test ins_test = new Test();
 
 ## final
 
-- [abstract](#abstract) ( 상속 ) 과 대칭점에 있는 관계로 상속/변경을 금지하는 규제이다.
+- [상속](#상속) ( 상속 ) 과 대칭점에 있는 관계로 상속/변경을 금지하는 규제이다.
 - 수학을 다루는 클래스에서 PI 는 3.14 인 상수로 변경이 되어서는 안되는 숫자인데 이 때 final 을 통해서 클래스와 메서드의 접근을 통해서 변경이 되는 것을 막을 수 있댜.
 - final 로 생성된 함수는 자식 클래스에서 상속을 할 수가 없다.
 - 클래스 내부에서 final 로 생성된 함수는 자식 클래스가 상속을 통해 받아온 후 [override](#override) 를 통해서도 변경이 불가능하다.
